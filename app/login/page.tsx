@@ -7,7 +7,6 @@ import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-
 const NextLoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -20,43 +19,43 @@ const NextLoginPage = () => {
     }
   }, [sessionStatus, router]);
 
-  const isValidEmail = (email: string) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
+  // const isValidEmail = (email: string) => {
+  //   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  //   return emailRegex.test(email);
+  // };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   const email = e.target[0].value;
+  //   const password = e.target[1].value;
 
-    if (!isValidEmail(email)) {
-      setError("Email is invalid");
-      toast.error("Email is invalid");
-      return;
-    }
+  //   if (!isValidEmail(email)) {
+  //     setError("Email is invalid");
+  //     toast.error("Email is invalid");
+  //     return;
+  //   }
 
-    if (!password || password.length < 8) {
-      setError("Password is invalid");
-      toast.error("Password is invalid");
-      return;
-    }
+  //   if (!password || password.length < 8) {
+  //     setError("Password is invalid");
+  //     toast.error("Password is invalid");
+  //     return;
+  //   }
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+  //   const res = await signIn("credentials", {
+  //     redirect: false,
+  //     email,
+  //     password,
+  //   });
 
-    if (res?.error) {
-      setError("Invalid email or password");
-      toast.error("Invalid email or password");
-      if (res?.url) router.replace("/dashboard");
-    } else {
-      setError("");
-      toast.success("Successful login");
-    }
-  };
+  //   if (res?.error) {
+  //     setError("Invalid email or password");
+  //     toast.error("Invalid email or password");
+  //     if (res?.url) router.replace("/dashboard");
+  //   } else {
+  //     setError("");
+  //     toast.success("Successful login");
+  //   }
+  // };
 
   if (sessionStatus === "loading") {
     return <h1>Loading...</h1>;
@@ -64,16 +63,16 @@ const NextLoginPage = () => {
   return (
     sessionStatus !== "authenticated" && (
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="flex justify-center flex-col items-center">
+        {/* <div className="flex justify-center flex-col items-center">
           <Image src="/logo 1.png" alt="star logo" width={50} height={50} />
           <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
-        </div>
+        </div> */}
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -148,10 +147,10 @@ const NextLoginPage = () => {
                   Sign in
                 </button>
               </div>
-            </form>
+            </form> */}
 
             <div>
-              <div className="relative mt-10">
+              {/* <div className="relative mt-10">
                 <div
                   className="absolute inset-0 flex items-center"
                   aria-hidden="true"
@@ -163,7 +162,7 @@ const NextLoginPage = () => {
                     Or continue with
                   </span>
                 </div>
-              </div>
+              </div> */}
 
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <button
@@ -178,7 +177,7 @@ const NextLoginPage = () => {
                   </span>
                 </button>
 
-                <button
+                {/* <button
                   onClick={() => {
                     signIn("github");
                   }}
@@ -199,12 +198,11 @@ const NextLoginPage = () => {
                   <span className="text-sm font-semibold leading-6">
                     GitHub
                   </span>
-                </button>
-                
+                </button> */}
               </div>
-              <p className="text-red-600 text-center text-[16px] my-4">
+              {/* <p className="text-red-600 text-center text-[16px] my-4">
                   {error && error}
-                </p>
+                </p> */}
             </div>
           </div>
         </div>

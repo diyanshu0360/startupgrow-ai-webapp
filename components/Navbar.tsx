@@ -92,12 +92,12 @@ const Navbar = () => {
                 >
                   Log in
                 </Link>
-                <Link
+                {/* <Link
                   href="/register"
                   className="rounded-md bg-black px-3 py-2 border border-gray-500 border-1 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Sign up
-                </Link>
+                </Link> */}
               </>
             ) : (
               <>
@@ -143,7 +143,7 @@ const Navbar = () => {
                   alt="star logo mobile"
                 />
               </Link>
-              {session ? (
+              {/* {session ? (
                 <button
                   onClick={() => {
                     signOut();
@@ -159,6 +159,16 @@ const Navbar = () => {
                 >
                   Sign up
                 </Link>
+              )} */}
+              {session && (
+                <button
+                  onClick={() => {
+                    signOut();
+                  }}
+                  className="ml-auto rounded-md bg-black border border-1 border-gray-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Log out
+                </button>
               )}
 
               <button
