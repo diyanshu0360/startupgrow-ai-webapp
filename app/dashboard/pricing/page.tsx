@@ -1,10 +1,20 @@
 "use client";
 import Header from "@/components/Header";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 
 export default function Pricing() {
   const [isProSelected, setIsProSelected] = useState(false);
+  const { data: session }: any = useSession();
+
+  console.log(session?.user);
+  const userEmail = session?.user?.email;
+  const userName = session?.user?.name;
+
+  const baseUrl = "https://elevenpages.lemonsqueezy.com/checkout/buy";
+  let paymentUrl = `${baseUrl}/${"bac2f57b-a379-4d69-b604-8dbbe8439be4"}?checkout[email]=${userEmail}&checkout[name]=${userName}`;
 
   const cards = [
     {
@@ -13,6 +23,7 @@ export default function Pricing() {
       price: "100 credits",
       features: ["Feature 1", "Feature 2", "Feature 3"],
       button: "Buy Now",
+      onPressLink: paymentUrl,
     },
     {
       title: "Pro Plan",
@@ -21,6 +32,7 @@ export default function Pricing() {
       features: ["Feature 1", "Feature 2", "Feature 3"],
       button: "Buy Now",
       popular: true,
+      onPressLink: paymentUrl,
     },
   ];
 
@@ -54,9 +66,11 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-        <button className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full">
-          {card.button}
-        </button>
+        <Link href={`${card.onPressLink}`} target={"_blank"}>
+          <div className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full flex flex-col justify-center items-center">
+            {card.button}
+          </div>
+        </Link>
       </div>
     </div>
   );

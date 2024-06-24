@@ -13,8 +13,12 @@ const subscriptionSchema = new Schema(
       type: String,
       required: true,
     },
-    planPrice: {
+    status: {
       type: String,
+      required: true,
+    },
+    planPrice: {
+      type: Number,
       required: true,
     },
     created_at: {

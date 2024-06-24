@@ -18,7 +18,7 @@ const savedHistorySchema = new Schema(
           contentOption: { type: String, required: true },
           linkedInContent: { type: [String], required: true },
           twitterContent: { type: [String], required: true },
-          // timestamps: true,
+          timestamps: true,
         },
       ],
       required: false,

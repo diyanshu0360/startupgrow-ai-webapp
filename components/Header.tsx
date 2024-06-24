@@ -4,14 +4,19 @@ import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import logoImg from "@/public/logo.png";
 import { FaSignOutAlt, FaChevronDown } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const { data: session } = useSession();
+  const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
     <header className="flex h-16 items-center justify-between px-4 md:px-6 py-3 bg-white text-black border-b-[1px] border-gray-300">
-      <div className="flex flex-row items-center gap-1">
+      <div
+        onClick={() => router.replace("/dashboard")}
+        className="flex flex-row items-center gap-1 cursor-pointer"
+      >
         <Image className="object-contain w-8 md:w-9" src={logoImg} alt="Logo" />
         <div className="font-semibold text-lg md:text-xl">StartupGrow AI</div>
       </div>
