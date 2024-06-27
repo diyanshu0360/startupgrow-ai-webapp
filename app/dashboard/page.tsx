@@ -24,6 +24,7 @@ const Dashboard = () => {
 
       if (response.ok) {
         const { userData } = await response.json();
+        
         setUserData(userData);
       } else {
         console.error("Failed to save product");

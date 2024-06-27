@@ -153,15 +153,19 @@ export default function Result() {
       });
 
       if (response.ok) {
-        const { textResponse } = await response.json();
-        let updatedArray = [...cardDetail];
-        updatedArray.map((item, indexNum) => {
-          if (item.name == productType) {
-            item.response = [...textResponse];
-            item.status = "success";
-          }
-        });
-        setCardDetail(updatedArray);
+        const { textResponse, notAllowed } = await response.json();
+        if (notAllowed) {
+          router.replace("/dashboard/pricing");
+        } else {
+          let updatedArray = [...cardDetail];
+          updatedArray.map((item, indexNum) => {
+            if (item.name == productType) {
+              item.response = [...textResponse];
+              item.status = "success";
+            }
+          });
+          setCardDetail(updatedArray);
+        }
       } else {
         console.error("Failed to save product");
         let updatedArray = [...cardDetail];
@@ -184,7 +188,7 @@ export default function Result() {
     }
   };
 
-  const callMultipleApis = () => {
+  const callMultipleApis = async () => {
     fetchProductData(cardDetail[0].name);
     fetchProductData(cardDetail[1].name);
     // fetchProductData(cardDetail[2].name);

@@ -43,7 +43,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
             productUrl,
             contentOption,
             linkedInContent: [],
-            twitterContent: []
+            twitterContent: [],
+            createdAt: new Date(),
         });
 
         // Save the updated user history to the database
