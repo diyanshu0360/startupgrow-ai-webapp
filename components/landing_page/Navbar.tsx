@@ -31,7 +31,7 @@ const Navbar = () => {
         {/* Menu for large screens */}
         <div className="hidden md:flex space-x-6 items-center">
           <div className="md:flex space-x-4 items-center">
-            <Link href="/pricing" className="font-medium text-md text-black">
+            <Link href="#pricing" className="font-medium text-md text-black">
               Pricing
             </Link>
             <Link href="/usecase" className="font-medium text-md text-black">
@@ -51,12 +51,6 @@ const Navbar = () => {
               </Link>
             ) : (
               <>
-                <Link
-                  href="/signup"
-                  className="bg-[#FF033E] text-white rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
-                >
-                  Sign Up
-                </Link>
                 <Link
                   href="/login"
                   className="bg-[#FF033E] text-white rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
@@ -113,7 +107,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white px-6 pt-2 pb-6 space-y-2 border-b-[1px] border-gray-300">
           <Link
-            href="/pricing"
+            href="#pricing"
             className="block font-medium text-md text-black"
           >
             Pricing
@@ -140,12 +134,6 @@ const Navbar = () => {
               </Link>
             ) : (
               <div className="flex flex-row items-center space-x-3">
-                <Link
-                  href="/signup"
-                  className="bg-[#FF033E] text-white w-[50%] rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
-                >
-                  Sign Up
-                </Link>
                 <Link
                   href="/login"
                   className="bg-[#FF033E] text-white w-[50%] rounded-md text-md font-medium flex items-center justify-center h-9 px-4"

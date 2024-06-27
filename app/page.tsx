@@ -9,7 +9,7 @@ import WaitlistSection from "@/components/landing_page/WaitlistSection";
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="">
       <Navbar />
       <HeroSection />
       <BenefitSection />

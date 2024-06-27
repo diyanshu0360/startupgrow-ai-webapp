@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import { useSession } from "next-auth/react";
+import { ImSpinner8 } from "react-icons/im";
 
 export default function Home() {
   const [productName, setProductName] = useState("");
@@ -12,6 +13,7 @@ export default function Home() {
   const [productUrlEmpty, setProductUrlEmpty] = useState<any>(null);
   const [contentOption, setContentOption] = useState("");
   const [contentOptionEmpty, setContentOptionEmpty] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const { data: session }: any = useSession();
   const userEmail = session?.user.email;
@@ -69,6 +71,8 @@ export default function Home() {
     }
 
     try {
+      setLoading(true);
+
       const response = await fetch("/api/history/save", {
         method: "POST",
         headers: {
@@ -94,12 +98,17 @@ export default function Home() {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="h-screen">
       <Header />
+      <div className="absolute inset-x-0 top-16 h-[700px] rotate-180 text-gray-500/20 opacity-70  [mask-image:linear-gradient(to_bottom,transparent,white)] -z-10">
+        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse" x="50%" y="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg>
+      </div>
       <div className="min-h-[calc(100%_-_4rem)] flex items-center justify-center">
         <div className="max-w-[32rem] w-full items-center justify-center bg-[#F4F4F5] p-8 py-12 rounded-lg">
           <div className="mb-4">
@@ -192,9 +201,14 @@ export default function Home() {
           <div className="flex justify-center pt-4">
             <button
               onClick={handleGenerate}
-              className="bg-[#FF033E] text-white font-medium h-10 w-44 rounded"
+              disabled={loading}
+              className="bg-[#FF033E] text-white font-medium h-10 w-44 rounded-md flex justify-center items-center"
             >
-              Generate
+              {
+                loading
+                  ? <ImSpinner8 className="animate-spin text-white h-full" />
+                  : "Generate"
+              }
             </button>
           </div>
         </div>
