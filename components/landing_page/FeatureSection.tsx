@@ -9,7 +9,7 @@ const FeatureSection: React.FC = () => {
             Our Features
           </h2>
           <p className="text-md md:text-lg text-[#71717A] mt-2">
-            Explore the amazing features our app offers.
+            Your Startup's Marketing Efforts with Precision and Efficiency
           </p>
         </div>
       </div>
@@ -21,10 +21,11 @@ const FeatureSection: React.FC = () => {
             alt="Feature 1"
             className="w-full h-60 object-cover mb-4 rounded"
           />
-          <h3 className="text-xl font-semibold text-black mt-4">Feature One</h3>
+          <h3 className="text-xl font-semibold text-black mt-4">
+            Content Creation
+          </h3>
           <p className="text-md text-[#71717A] mt-2">
-            Feature One provides exceptional benefits and functionalities for
-            your needs.
+            Personalized marketing content designed for your specific needs.
           </p>
         </div>
         <div className="bg-[#F4F4F5] border border-gray-300 p-6 rounded-md flex flex-col items-center text-center">
@@ -33,9 +34,12 @@ const FeatureSection: React.FC = () => {
             alt="Feature 2"
             className="w-full h-60 object-cover mb-4 rounded"
           />
-          <h3 className="text-xl font-semibold text-black mt-4">Feature Two</h3>
+          <h3 className="text-xl font-semibold text-black mt-4">
+            Multi-Platform Compatibility
+          </h3>
           <p className="text-md text-[#71717A] mt-2">
-            Feature Two is designed to enhance your productivity and efficiency.
+            Content optimized for platforms like Twitter, Reddit, LinkedIn, and
+            more.
           </p>
         </div>
         <div className="bg-[#F4F4F5] border border-gray-300 p-6 rounded-md flex flex-col items-center text-center">
@@ -45,10 +49,10 @@ const FeatureSection: React.FC = () => {
             className="w-full h-60 object-cover mb-4 rounded"
           />
           <h3 className="text-xl font-semibold text-black mt-4">
-            Feature Three
+            Time-Saving Automation
           </h3>
           <p className="text-md text-[#71717A] mt-2">
-            Feature Three offers unique capabilities to help you achieve more.
+            Instantly generate 30 days of content with minimal effort.
           </p>
         </div>
         <div className="bg-[#F4F4F5] border border-gray-300 p-6 rounded-md flex flex-col items-center text-center">
@@ -58,10 +62,11 @@ const FeatureSection: React.FC = () => {
             className="w-full h-60 object-cover mb-4 rounded"
           />
           <h3 className="text-xl font-semibold text-black mt-4">
-            Feature Four
+            Engagement Optimization
           </h3>
           <p className="text-md text-[#71717A] mt-2">
-            Feature Four ensures a seamless experience with advanced technology.
+            Content that enhances visibility and connects with your target
+            audience.
           </p>
         </div>
       </div>

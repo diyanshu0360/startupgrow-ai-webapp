@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import logoImg from "@/public/logo.png";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +12,10 @@ const Footer: React.FC = () => {
           {/* Left Part */}
           <div className="flex flex-col items-start space-y-4 max-w-xs">
             {/* Logo and Name */}
-            <div className="flex flex-row items-center gap-1 cursor-pointer">
+            <Link
+              href={"/"}
+              className="flex flex-row items-center gap-1 cursor-pointer"
+            >
               <Image
                 className="object-contain w-8 md:w-9 rounded-md"
                 src={logoImg}
@@ -20,32 +24,35 @@ const Footer: React.FC = () => {
               <span className="font-semibold text-lg md:text-xl">
                 StartupGrow AI
               </span>
-            </div>
+            </Link>
             {/* Description */}
             <p className="text-black font-normal text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-              mollis turpis id nibh bibendum, in tempor libero suscipit.
+              Simplifies your marketing strategy by generating 30 days of
+              product launch and marketing content.
             </p>
             {/* Social Links */}
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                target={"_blank"}
+                href="https://x.com/diyanshu0360"
                 className="text-[#71717A] w-8 h-8 border-[1px] border-gray-300 rounded-md justify-center items-center flex flex-col"
               >
                 <FaTwitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                target={"_blank"}
+                href="https://www.linkedin.com/in/diyanshu-patel-24520522a/"
                 className="text-[#71717A] w-8 h-8 border-[1px] border-gray-300 rounded-md justify-center items-center flex flex-col"
               >
                 <FaLinkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                target={"_blank"}
+                href="mailto:diyanshu0360@gmail.com"
                 className="text-[#71717A] w-8 h-8 border-[1px] border-gray-300 rounded-md justify-center items-center flex flex-col"
               >
                 <FaEnvelope className="h-5 w-5" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -54,32 +61,35 @@ const Footer: React.FC = () => {
             {/* Privacy, Terms, Refund */}
             <div className="space-y-2 flex flex-col">
               <h3 className="text-md text-black font-medium">Legal</h3>
-              <a href="#" className="text-sm text-black font-normal">
+              <Link href="/privacy" className="text-sm text-black font-normal">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-sm text-black font-normal">
+              </Link>
+              <Link href="/terms" className="text-sm text-black font-normal">
                 Terms of Service
-              </a>
-              <a href="#" className="text-sm text-black font-normal">
+              </Link>
+              <Link href="/refund" className="text-sm text-black font-normal">
                 Refund Policy
-              </a>
+              </Link>
             </div>
 
             {/* About, Developer, Blog, Contact Us */}
             <div className="space-y-2 flex flex-col">
               <h3 className="text-md text-black font-medium">Company</h3>
-              <a href="#" className="text-sm text-black font-normal">
-                About Us
-              </a>
-              <a href="#" className="text-sm text-black font-normal">
+              <Link
+                target={"_self"}
+                href="https://x.com/diyanshu0360"
+                className="text-sm text-black font-normal"
+              >
                 Developer
-              </a>
-              <a href="#" className="text-sm text-black font-normal">
-                Blog
-              </a>
-              <a href="#" className="text-sm text-black font-normal">
+              </Link>
+
+              <Link
+                target={"_self"}
+                href="mailto:diyanshu0360@gmail.com"
+                className="text-sm text-black font-normal"
+              >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -87,7 +97,8 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="text-center mt-8">
           <p className="text-xs">
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} StartupGrow AI. All rights
+            reserved.
           </p>
         </div>
       </div>

@@ -82,7 +82,7 @@ export default function Pricing() {
         <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse" x="50%" y="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg>
       </div>
       <div className="min-h-[calc(100%_-_4rem)] flex items-center justify-center flex-col">
-        <div className="border border-[#F4F4F5] rounded-lg py-4 px-4 md:px-20 flex flex-col gap-2">
+        <div className="border bg-white border-[#F4F4F5] rounded-lg py-4 px-4 md:px-20 flex flex-col gap-2">
           <div className="text-center my-4 flex flex-col items-center justify-center">
             <h1 className="text-md font-semibold text-[#FF033E]">
               Pricing Plans
