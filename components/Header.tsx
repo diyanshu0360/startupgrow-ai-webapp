@@ -5,14 +5,27 @@ import { useSession, signOut } from "next-auth/react";
 import logoImg from "@/public/logo.png";
 import { FaSignOutAlt, FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { ImSpinner8 } from "react-icons/im";
 
 export default function Header() {
   const { data: session } = useSession();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const handleLogout = async () => {
+    try {
+      setLoading(true);
+      await signOut();
+    } catch (error) {
+      console.error("Failed to logout:", error);
+     } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <header className="flex h-16 items-center justify-between px-4 md:px-6 py-3 bg-white text-black border-b-[1px] border-gray-300">
+    <header className="flex h-16 items-center justify-between px-4 md:px-6 py-3 bg-white text-black border-b-[1px] border-gray-300 sticky top-0 z-10">
       <div
         onClick={() => router.replace("/dashboard")}
         className="flex flex-row items-center gap-1 cursor-pointer"
@@ -41,7 +54,7 @@ export default function Header() {
         )}
       </div>
       {dropdownOpen && (
-        <div className="absolute top-[56px] right-3 bg-white border border-gray-300 rounded-md shadow-md min-w-48 z-10">
+        <div className="absolute top-[56px] right-3 bg-white border border-gray-300 rounded-md shadow-md min-w-48 z-[9999]">
           <div className="px-4 py-3">
             <p className="font-medium break-words text-sm">
               {session?.user?.email}
@@ -68,11 +81,19 @@ export default function Header() {
             </a>
             <div className="flex-grow m-2">
               <button
-                onClick={() => signOut()}
+                onClick={handleLogout}
+                disabled={loading}
                 className="flex items-center justify-center w-full h-9 bg-[#FF033E] text-white rounded-md text-sm font-medium"
               >
-                <FaSignOutAlt className="mr-2 text-white" />
-                Logout
+
+                {
+                  loading
+                    ? <ImSpinner8 className="animate-spin text-white h-full" />
+                    : <>
+                      <FaSignOutAlt className="mr-2 text-white" />
+                      Logout
+                    </>
+                }
               </button>
             </div>
           </div>

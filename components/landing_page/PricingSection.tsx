@@ -24,9 +24,8 @@ export default function Pricing() {
 
   const renderCard = (card: any, index: any) => (
     <div
-      className={`relative py-8 px-4 flex flex-row justify-center items-center ${
-        index == 0 ? "md:justify-end" : "md:justify-start"
-      }`}
+      className={`relative py-8 px-4 flex flex-row justify-center items-center ${index == 0 ? "md:justify-end" : "md:justify-start"
+        }`}
       key={index}
     >
       <div className="overflow-hidden shadow-lg p-4 border rounded-md w-full sm:w-96">
@@ -67,7 +66,7 @@ export default function Pricing() {
   );
 
   return (
-    <div className="bg-white flex items-center justify-center py-8">
+    <div className="bg-white flex items-center justify-center py-8" id="pricing">
       <div className="container mx-auto px-4">
         <div className="text-center mb-4 md:mb-8">
           {/* <div className="flex flex-row justify-center items-center mb-4">

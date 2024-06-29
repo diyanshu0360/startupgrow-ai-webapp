@@ -37,7 +37,7 @@ export default function Pricing() {
   ];
 
   const renderCard = (card: any, index: number) => (
-    <div className="relative py-2" key={index}>
+    <div className="relative py-2 bg-white" key={index}>
       <div className="overflow-hidden shadow-lg p-4 border rounded-md w-60 sm:w-64">
         {card.popular && (
           <span className="bg-[#F4F4F5] text-[#FF033E] text-[11px] font-bold px-3 py-1 rounded-full absolute top-[-6px] border border-[#FF033E]">
@@ -76,8 +76,11 @@ export default function Pricing() {
   );
 
   return (
-    <div className="h-screen">
+    <div className="h-screen relative">
       <Header />
+      <div className="absolute inset-x-0 top-16 h-[700px] rotate-180 text-gray-500/20 opacity-70  [mask-image:linear-gradient(to_bottom,transparent,white)] -z-20">
+        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse" x="50%" y="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg>
+      </div>
       <div className="min-h-[calc(100%_-_4rem)] flex items-center justify-center flex-col">
         <div className="border border-[#F4F4F5] rounded-lg py-4 px-4 md:px-20 flex flex-col gap-2">
           <div className="text-center my-4 flex flex-col items-center justify-center">
@@ -98,17 +101,15 @@ export default function Pricing() {
             <div className="bg-[#F4F4F5] h-10 rounded-md border border-gray-300 flex flex-row justify-center items-center">
               <button
                 onClick={() => setIsProSelected(false)}
-                className={`text-sm font-medium h-8 w-24 rounded-[4px] mx-1 ${
-                  isProSelected ? "text-black" : "text-white bg-[#FF033E]"
-                }`}
+                className={`text-sm font-medium h-8 w-24 rounded-[4px] mx-1 ${isProSelected ? "text-black" : "text-white bg-[#FF033E]"
+                  }`}
               >
                 Starter
               </button>
               <button
                 onClick={() => setIsProSelected(true)}
-                className={`text-sm font-medium h-8 w-24 rounded-sm mx-1 ${
-                  !isProSelected ? "text-black" : "text-white bg-[#FF033E]"
-                }`}
+                className={`text-sm font-medium h-8 w-24 rounded-sm mx-1 ${!isProSelected ? "text-black" : "text-white bg-[#FF033E]"
+                  }`}
               >
                 Pro
               </button>
