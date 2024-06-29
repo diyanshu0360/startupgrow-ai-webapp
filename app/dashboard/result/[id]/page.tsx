@@ -190,7 +190,7 @@ export default function Result() {
 
   const callMultipleApis = async () => {
     fetchProductData(cardDetail[0].name);
-    fetchProductData(cardDetail[1].name);
+    // fetchProductData(cardDetail[1].name);
     // fetchProductData(cardDetail[2].name);
     // fetchProductData(cardDetail[3].name);
     // fetchProductData(cardDetail[4].name);

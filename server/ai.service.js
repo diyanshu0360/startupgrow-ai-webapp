@@ -15,34 +15,10 @@ dotenv.config();
 
 // Initialize the OpenAI model
 const model = new ChatOpenAI({
-  modelName: "gpt-3.5-turbo",
+  modelName: "gpt-4o",
   temperature: 0,
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
-
-// Define the initial prompt
-const prompt = ChatPromptTemplate.fromMessages([
-  [
-    "system",
-    `You are assitant which create marketing content from the website content provided to you.`,
-  ],
-  ["placeholder", "{chat_history}"],
-  ["human", "{input}"],
-]);
-
-// Function to filter messages to the last 10
-const filterMessages = ({ chat_history }) => {
-  return chat_history.slice(-10);
-};
-
-// Create the chain with filtering
-const createChain = (model) => {
-  return RunnableSequence.from([
-    RunnablePassthrough.assign({ chat_history: filterMessages }),
-    prompt,
-    model,
-  ]);
-};
 
 // Function to handle user interactions
 export const handleUserInteraction = async (
@@ -50,6 +26,30 @@ export const handleUserInteraction = async (
   initialContent,
   userMessages
 ) => {
+  // Define the initial prompt
+  const prompt = ChatPromptTemplate.fromMessages([
+    [
+      "system",
+      `You are experienced content expert which writes marketing content from the website content provided to you. Scape the website ${initialContent} for content.`,
+    ],
+    ["placeholder", "{chat_history}"],
+    ["human", "{input}"],
+  ]);
+
+  // Function to filter messages to the last 10
+  const filterMessages = ({ chat_history }) => {
+    return chat_history.slice(-10);
+  };
+
+  // Create the chain with filtering
+  const createChain = (model) => {
+    return RunnableSequence.from([
+      RunnablePassthrough.assign({ chat_history: filterMessages }),
+      prompt,
+      model,
+    ]);
+  };
+
   // Initialize message histories
   const messageHistories = {};
 
@@ -93,13 +93,17 @@ export const handleUserInteraction = async (
 
   // Handle user messages
   let responseArray = [];
+  console.log("Half Completed " + userMessages.length);
   for (const userInput of userMessages) {
+    console.log(userInput, "---userInput");
     const response = await withMessageHistory.invoke(
       { input: userInput },
       config
     );
+    console.log(response, "----------");
     responseArray.push(response);
   }
 
+  console.log("Completed " + sessionId);
   return responseArray;
 };

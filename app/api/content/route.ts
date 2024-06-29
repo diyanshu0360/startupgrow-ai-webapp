@@ -29,7 +29,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
             }, { status: 200 })
         }
 
-        if (productSelected) {
+
+        if (productSelected.linkedInContent.length > 0 && productSelected.twitterContent.length > 0) {
             switch (productType) {
                 case "LinkedIn Posts":
                     selectedArray = productSelected.linkedInContent
@@ -45,17 +46,36 @@ export async function POST(req: NextRequest, res: NextResponse) {
             }, { status: 200 })
         }
 
+
         const initialContent = productSelected.productUrl;
         const sessionId = productSelected.productId;
+        let promptSelected: any = null;
 
         // LinkedIn Post
-        const twitterPrompt = [
-            "Consider yourself as experienced Twitter content writer. I want you to write me Twitter Thread for a product marketing. I'll give you landing page content, you need to write me Twitter Thread. The Twitter Thread write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. Thread should be human written.",
-            "Consider yourself as experienced Twitter content writer. I want you to write me Tweet for a product marketing. I'll give you landing page content, you need to write me Tweet. The Tweet write up should be relevant to Product. Tweet should be before the launch. Tweet should end with a CTA. Thread should be human written and under 280 characters.",
+        const linkedInPrompt = [
+            `Consider yourself as experienced LinkedIn content writer. I want you to write me LinkedIn Post for a product marketing. I'll give you landing page content, you need to write me LinkedIn Post. The LinkedIn Post write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. LinkedIn Post should be human written. Content url :${productSelected.productUrl}`,
+            // `Consider yourself as experienced LinkedIn content writer. I want you to write me LinkedIn Post for a product marketing. I'll give you landing page content, you need to write me LinkedIn Post. The LinkedIn Post write up should be relevant to Product. LinkedIn Post should be before the launch. LinkedIn Post should end with a CTA. LinkedIn Post should be human written. Content url :${productSelected.productUrl}`
         ];
 
-        // const response = await handleUserInteraction(sessionId, initialContent, twitterPrompt)
-        // const data = response
+        // Twitter Post
+        const twitterPrompt = [
+            "Consider yourself as experienced Twitter content writer. I want you to write me Twitter Thread for a product marketing. I'll give you landing page content, you need to write me Twitter Thread. The Twitter Thread write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. Thread should be human written.",
+            // "Consider yourself as experienced Twitter content writer. I want you to write me Tweet for a product marketing. I'll give you landing page content, you need to write me Tweet. The Tweet write up should be relevant to Product. Tweet should be before the launch. Tweet should end with a CTA. Thread should be human written and under 280 characters.",
+        ];
+
+        switch (productType) {
+            case "LinkedIn Posts":
+                promptSelected = [...linkedInPrompt]
+                break;
+            case "Twitter Posts":
+                promptSelected = [...twitterPrompt]
+                break;
+        }
+
+
+        const response = await handleUserInteraction(sessionId, initialContent, twitterPrompt)
+
+        console.log(response, ' ////////////////// ' + productType)
 
         return NextResponse.json({
             message: "Product saved successfully",
