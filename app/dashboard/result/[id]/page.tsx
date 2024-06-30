@@ -214,11 +214,11 @@ export default function Result() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="md:flex flex-1 overflow-hidden">
-        <div className="flex flex-row mx-4 mt-4 justify-end md:hidden">
+        {/* <div className="flex flex-row mx-4 mt-4 justify-end md:hidden">
           <button className="h-8 w-28 bg-[#FF033E] rounded-md">
             <span className="text-white font-medium text-sm">Download Pdf</span>
           </button>
-        </div>
+        </div> */}
         <div className="w-full md:w-1/2 p-4 overflow-y-auto flex flex-col gap-2">
           {cardDetail.map((card: any, index: number) => (
             <List

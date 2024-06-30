@@ -3,7 +3,7 @@ import { FaCheckCircle, FaChartLine, FaShieldAlt } from "react-icons/fa";
 
 const BenefitSection: React.FC = () => {
   return (
-    <section className="bg-white py-12 md:py-20">
+    <section id="process" className="bg-white py-12 md:py-20">
       <div className="container mx-auto text-center mb-12">
         <div className="flex flex-col items-center mb-4">
           {/* <div>

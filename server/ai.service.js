@@ -20,42 +20,42 @@ const model = new ChatOpenAI({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
 
+// Define the initial prompt
+const prompt = ChatPromptTemplate.fromMessages([
+  [
+    "system",
+    `You are an experienced content expert who writes marketing content from the website content provided to you.`,
+  ],
+  ["placeholder", "{chat_history}"],
+  ["human", "{input}"],
+]);
+
+// Function to filter messages to the last 10
+const filterMessages = ({ chat_history }) => {
+  return chat_history.slice(-10);
+};
+
+// Create the chain with filtering
+const createChain = (model) => {
+  return RunnableSequence.from([
+    RunnablePassthrough.assign({ chat_history: filterMessages }),
+    prompt,
+    model,
+  ]);
+};
+
 // Function to handle user interactions
 export const handleUserInteraction = async (
   sessionId,
   initialContent,
   userMessages
 ) => {
-  // Define the initial prompt
-  const prompt = ChatPromptTemplate.fromMessages([
-    [
-      "system",
-      `You are experienced content expert which writes marketing content from the website content provided to you. Scape the website ${initialContent} for content.`,
-    ],
-    ["placeholder", "{chat_history}"],
-    ["human", "{input}"],
-  ]);
-
-  // Function to filter messages to the last 10
-  const filterMessages = ({ chat_history }) => {
-    return chat_history.slice(-10);
-  };
-
-  // Create the chain with filtering
-  const createChain = (model) => {
-    return RunnableSequence.from([
-      RunnablePassthrough.assign({ chat_history: filterMessages }),
-      prompt,
-      model,
-    ]);
-  };
-
   // Initialize message histories
   const messageHistories = {};
 
   // Define the message history retrieval function
   const getMessageHistory = async (sessionId) => {
-    if (messageHistories[sessionId] === undefined) {
+    if (!messageHistories[sessionId]) {
       const messageHistory = new InMemoryChatMessageHistory();
       messageHistories[sessionId] = messageHistory;
     }
@@ -73,16 +73,18 @@ export const handleUserInteraction = async (
     historyMessagesKey: "chat_history",
   });
 
-  // Initialize session with initial content
+  // Initialize session with initial content if not present
   const initializeSession = async (sessionId, initialContent) => {
     const messageHistory = await withMessageHistory.getMessageHistory(
       sessionId
     );
-    await messageHistory.addMessages([
-      new HumanMessage({
-        content: `Scrape the website content: ${initialContent}`,
-      }),
-    ]);
+    if (messageHistory.getMessages().length === 0) {
+      await messageHistory.addMessages([
+        new HumanMessage({
+          content: `Given is the product's landing page website content: ${initialContent}`,
+        }),
+      ]);
+    }
   };
 
   // Initialize session with the provided initial content

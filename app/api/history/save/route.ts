@@ -21,6 +21,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             });
         }
 
+        console.log(userDetail, '.....')
 
         if (userDetail.productCredits <= 0) {
             userDetail.productCredits = 0
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         // Generate a new product ID
         const productCount = userHistory.allProductHistory.length + 1;
-        const productId = `${userEmail.split("@")[0]}${String(productCount).padStart(4, "0")}`;
+        const productId = `${userDetail._id.slice(6)}${String(productCount).padStart(4, "0")}`;
 
         // Add the new product to the user's history
         userHistory.allProductHistory.push({
@@ -42,8 +43,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
             productName,
             productUrl,
             contentOption,
-            linkedInContent: [],
-            twitterContent: [],
+            linkedInContent: { responseContent: [], cycleCompleted: false },
+            twitterContent: { responseContent: [], cycleCompleted: false },
             createdAt: new Date(),
         });
 

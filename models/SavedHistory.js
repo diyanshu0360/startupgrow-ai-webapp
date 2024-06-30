@@ -16,8 +16,21 @@ const savedHistorySchema = new Schema(
           productName: { type: String, required: true },
           productUrl: { type: String, required: true },
           contentOption: { type: String, required: true },
-          linkedInContent: { type: [String], required: true },
-          twitterContent: { type: [String], required: true },
+          linkedInContent: {
+            type: {
+              responseContent: { type: [String], required: true },
+              cycleCompleted: { type: Boolean, required: true },
+            },
+            required: true,
+          },
+          twitterContent: {
+            type: {
+              responseContent: { type: [String], required: true },
+              cycleCompleted: { type: Boolean, required: true },
+            },
+            required: true,
+          },
+          // cycleCompleted: { type: Boolean, required: true },
           createdAt: { type: Date, required: true },
         },
       ],

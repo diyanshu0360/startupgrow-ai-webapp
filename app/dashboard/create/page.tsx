@@ -107,7 +107,25 @@ export default function Home() {
     <div className="h-screen">
       <Header />
       <div className="absolute inset-x-0 top-16 h-[700px] rotate-180 text-gray-500/20 opacity-70  [mask-image:linear-gradient(to_bottom,transparent,white)] -z-10">
-        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse" x="50%" y="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg>
+        <svg
+          className="absolute inset-0 h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="grid-pattern"
+              width="32"
+              height="32"
+              patternUnits="userSpaceOnUse"
+              x="50%"
+              y="100%"
+              patternTransform="translate(0 -1)"
+            >
+              <path d="M0 32V.5H32" fill="none" stroke="currentColor"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
+        </svg>
       </div>
       <div className="min-h-[calc(100%_-_4rem)] flex items-center justify-center">
         <div className="max-w-[32rem] w-full items-center justify-center bg-[#F4F4F5] p-8 py-12 rounded-lg">
@@ -179,18 +197,18 @@ export default function Home() {
               className="w-full py-2 px-3 text-[#71717A] leading-tight border-[#71717A] focus:border-[#FF033E] focus:border-1 rounded-md outline-none focus:outline-none"
             >
               <option className="text-[#71717A]" value="" disabled selected>
-                Select an option
+                Select Content:
               </option>
               <option className="text-[#71717A]" value="productLaunch">
-                For Product Launch
+                30 Days Product Launch
               </option>
-              <option
+              {/* <option
                 className="text-[#71717A]"
                 value="generalMonthly"
                 disabled
               >
                 General Monthly Content
-              </option>
+              </option> */}
             </select>
             {contentOptionEmpty && (
               <p className="text-[#FF033E] text-sm mt-2">
@@ -204,11 +222,11 @@ export default function Home() {
               disabled={loading}
               className="bg-[#FF033E] text-white font-medium h-10 w-44 rounded-md flex justify-center items-center"
             >
-              {
-                loading
-                  ? <ImSpinner8 className="animate-spin text-white h-full" />
-                  : "Generate"
-              }
+              {loading ? (
+                <ImSpinner8 className="animate-spin text-white h-full" />
+              ) : (
+                "Generate"
+              )}
             </button>
           </div>
         </div>

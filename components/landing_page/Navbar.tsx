@@ -34,13 +34,13 @@ const Navbar = () => {
         {/* Menu for large screens */}
         <div className="hidden md:flex space-x-6 items-center">
           <div className="md:flex space-x-4 items-center">
-            <Link href="/usecase" className="font-medium text-md text-black">
-              Features
+            <Link href="/#process" className="font-medium text-md text-black">
+              Process
             </Link>
-            <Link href="#pricing" className="font-medium text-md text-black">
+            <Link href="/#pricing" className="font-medium text-md text-black">
               Pricing
             </Link>
-            <Link href="/affiliate" className="font-medium text-md text-black">
+            <Link href="/#faqs" className="font-medium text-md text-black">
               FAQ's
             </Link>
           </div>

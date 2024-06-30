@@ -12,9 +12,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
         let userData = await User.findOne({ email: userEmail });
 
         let productSelected: any = null;
-        let selectedArray: any = null;
 
-        userHistory.allProductHistory.map((item: any, index: number) => {
+        userHistory.allProductHistory.map((item: any) => {
             if (item.productId === productId) {
                 productSelected = item;
             }
@@ -22,37 +21,50 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         if (userData.productCredits <= 0 && productSelected == null) {
             return NextResponse.json({
-                message: "Product saved successfully",
+                message: "Please Buy More Credits",
                 notAllowed: true
             }, { status: 200 });
         }
 
 
-        const initialContent = productSelected.productUrl;
-
-        console.log(initialContent, '//////////////')
-
-        const sessionId = productSelected.productId;
-        let promptSelected: any = null;
-
-        // LinkedIn Post
+        let promptSelected = null;
         const linkedInPrompt = [
-            `Consider yourself as experienced LinkedIn content writer. I want you to write me LinkedIn Post for a product marketing. I'll give you landing page content, you need to write me LinkedIn Post. The LinkedIn Post write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. LinkedIn Post should be human written. Content url :${productSelected.productUrl}`,
+            `Consider yourself as experienced LinkedIn content writer. I want you to write me LinkedIn Post for a product marketing. I'll give you landing page content, you need to write me LinkedIn Post. The LinkedIn Post write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. LinkedIn Post should be human written. Content url: ${productSelected.productUrl}`,
         ];
 
-        // Twitter Post
         const twitterPrompt = [
             "Consider yourself as experienced Twitter content writer. I want you to write me Twitter Thread for a product marketing. I'll give you landing page content, you need to write me Twitter Thread. The Twitter Thread write up should be relevant to Product. It should start with storytelling and first tweet to grab people’s attention. All posts should end with a CTA. Thread should be human written.",
         ];
 
         switch (productType) {
             case "LinkedIn Posts":
-                promptSelected = [...linkedInPrompt];
+                if (productSelected.linkedInContent.cycleCompleted) {
+                    return NextResponse.json({
+                        message: "Product saved successfully",
+                        allProductArray: [...productSelected.linkedInContent.responseContent]
+                    }, { status: 200 });
+                } else {
+                    promptSelected = [...linkedInPrompt];
+                }
                 break;
             case "Twitter Posts":
-                promptSelected = [...twitterPrompt];
+                if (productSelected.twitterContent.cycleCompleted) {
+                    return NextResponse.json({
+                        message: "Product saved successfully",
+                        allProductArray: [...productSelected.twitterContent.responseContent]
+                    }, { status: 200 });
+                } else {
+                    promptSelected = [...twitterPrompt];
+                }
                 break;
         }
+
+        // Fetch content from external scraper API
+        const sessionId = productSelected.productId;
+        const response = await fetch(`http://localhost:5002/fetch?url=${encodeURIComponent(productSelected.productUrl)}`);
+        const initialContent = await response.text();
+
+        console.log(initialContent, '//////////////');
 
         // Call handleUserInteraction with fetched initialContent
         // const response = await handleUserInteraction(sessionId, initialContent, promptSelected);

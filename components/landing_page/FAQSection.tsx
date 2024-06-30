@@ -56,7 +56,7 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-8 md:py-16 bg-white">
+    <section id="faqs" className="py-8 md:py-16 bg-white">
       <div className="container mx-auto">
         {/* <div className="flex flex-row justify-center items-center md:mb-4">
           <span className="text-xs font-medium text-black bg-[#F4F4F5] flex flex-row justify-center items-center border-gray-300 h-6 border px-5 rounded-full">
@@ -87,6 +87,7 @@ const FAQSection: React.FC = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
+                onClick={() => toggleFAQ(index)}
                 className={`px-3 sm:px-4 py-2 sm:py-3 flex ${
                   activeIndex === index
                     ? "flex-col"
@@ -94,10 +95,7 @@ const FAQSection: React.FC = () => {
                 } cursor-pointer bg-[#F4F4F5] rounded-md border border-gray-300`}
               >
                 {/* Question and Toggle */}
-                <div
-                  className="flex flex-grow items-center justify-between cursor-pointer mb-1"
-                  onClick={() => toggleFAQ(index)}
-                >
+                <div className="flex flex-grow items-center justify-between cursor-pointer mb-1">
                   <h3 className="text-sm sm:text-md text-black font-medium">
                     {faq.question}
                   </h3>
