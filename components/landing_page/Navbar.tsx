@@ -139,9 +139,9 @@ const Navbar = () => {
               <div className="flex flex-row items-center space-x-3">
                 <Link
                   href="/login"
-                  className="bg-[#FF033E] text-white w-[50%] rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
+                  className="bg-[#FF033E] text-white w-full rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
                 >
-                  Log In
+                  Sign In
                 </Link>
               </div>
             )}
