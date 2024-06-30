@@ -8,10 +8,6 @@ import {
 } from "@langchain/core/runnables";
 import { HumanMessage } from "@langchain/core/messages";
 import { ChatOpenAI } from "@langchain/openai";
-import dotenv from "dotenv";
-
-// Load environment variables
-dotenv.config();
 
 // Initialize the OpenAI model
 const model = new ChatOpenAI({
