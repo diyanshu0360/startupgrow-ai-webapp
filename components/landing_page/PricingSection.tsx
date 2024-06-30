@@ -5,17 +5,27 @@ export default function Pricing() {
   const cards = [
     {
       title: "Starter Plan",
-      subtitle: "Great for individuals",
+      subtitle: "Great for Launch",
       price: "$5",
-      features: ["3 credits", "30 days marketing content", "24/7 assistance"],
+      features: [
+        "3 Credits",
+        "30 days Marketing Content",
+        "24/7 Support",
+        "Upcoming Features",
+      ],
       button: "Buy Now",
       onPressLink: "/dashboard",
     },
     {
       title: "Pro Plan",
-      subtitle: "Perfect for professionals",
+      subtitle: "Perfect for Growth",
       price: "$10",
-      features: ["10 credits", "30 days marketing content", "24/7 assistance"],
+      features: [
+        "5 Credits",
+        "30 days Marketing Content",
+        "24/7 Support",
+        "Upcoming Features",
+      ],
       button: "Buy Now",
       popular: true,
       onPressLink: "/dashboard",

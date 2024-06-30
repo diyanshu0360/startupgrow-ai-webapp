@@ -4,19 +4,44 @@ import React, { useState } from "react";
 const FAQSection: React.FC = () => {
   const faqs = [
     {
-      question: "What is StartupGrow ai?",
+      question: "What is StartupGrow AI?",
       answer:
-        "StartupGrow AI is your go-to tool for easy and impactful writing of marketing content over 30 days. It is very easy to use, just paste your products URL and that's it. It will provide 30 days marketing content according to your product.",
+        "StartupGrow AI generates 30 days of tailored marketing content for your startup based on your website URL. It covers multiple social platforms to boost your visibility and growth.",
     },
     {
-      question: "How do I stay updated on StartupGrow AI's new features and releases?",
+      question: "Does using StartupGrow AI affect my landing page?",
       answer:
-        "Stay informed by signing up on dashboard and following our founders on social media for the latest updates.",
+        "No, it doesn't change anything on your website. We simply scrape the text content to generate marketing material.",
     },
     {
-      question: "Is customer support available?",
+      question: "What are 'credits' and how are they used?",
       answer:
-        "Yes, we offer 24/7 customer support to address any questions or feedback you may have.",
+        "Each credit provides 30 days of marketing content for one product (one cycle).",
+    },
+    {
+      question: "How can I publish the content?",
+      answer:
+        "You can copy the content directly, download it as a PDF, and it will also be saved in your history. Additionally, you'll receive an email with the PDF.",
+    },
+    {
+      question: "What kind of support do you offer?",
+      answer:
+        "We offer 24/7 customer support to help you with any questions or issues.",
+    },
+    {
+      question: "How do I get started?",
+      answer:
+        "Buy a credit, enter your URL and product name, then click the generate button—that's all!",
+    },
+    {
+      question: "Can I cancel my plan?",
+      answer:
+        "Since the plans are one-time payments, there's no need for cancellation. However, please contact support if you have any concerns.",
+    },
+    {
+      question: "How does StartupGrow AI ensure content quality?",
+      answer:
+        "Our AI leverages the latest technologies to analyze data accurately and generate high-quality, relevant content tailored to your startup's needs.",
     },
   ];
 

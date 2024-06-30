@@ -17,7 +17,10 @@ const Navbar = () => {
     <nav className="bg-white bg-opacity-20 backdrop-blur-md fixed w-full top-0 left-0 z-10 h-16 border-b-[1px] border-gray-100">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo and App Name */}
-        <div className="flex flex-row items-center gap-1 cursor-pointer">
+        <Link
+          href={"/"}
+          className="flex flex-row items-center gap-1 cursor-pointer"
+        >
           <Image
             className="object-contain w-8 md:w-9 rounded-md"
             src={logoImg}
@@ -26,7 +29,7 @@ const Navbar = () => {
           <span className="font-semibold text-lg md:text-xl">
             StartupGrow AI
           </span>
-        </div>
+        </Link>
 
         {/* Menu for large screens */}
         <div className="hidden md:flex space-x-6 items-center">

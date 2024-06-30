@@ -2,18 +2,8 @@ import Footer from "@/components/landing_page/Footer";
 import Navbar from "@/components/landing_page/Navbar";
 
 const PrivacyPage = () => {
-  const privacyPolicyContent = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula lobortis sapien, non scelerisque nunc fringilla eget. Integer id justo elit. Vivamus laoreet mauris in turpis venenatis, ac lobortis leo fermentum. Sed vulputate orci sit amet eros tempor, quis dignissim ligula fringilla. Nullam varius eros eu nibh tincidunt tincidunt. Cras sed lorem arcu. Sed sollicitudin, magna a dignissim convallis, dolor nisi finibus metus, sed pellentesque velit nisi et enim. Duis sed venenatis felis, id bibendum nisi. Nam a ex eget erat sollicitudin efficitur nec nec lacus. Pellentesque sed justo quis ex placerat feugiat id a eros. Aliquam vel ligula in nisl volutpat viverra.
-
-  Phasellus tempor lectus eget est tincidunt tristique. Maecenas luctus lectus eget nisi euismod suscipit. Sed eget tincidunt risus. Donec sollicitudin erat nec mauris vehicula, vitae interdum quam elementum. Morbi vitae metus vitae elit vehicula egestas. Ut a sapien nec purus sodales tincidunt. Suspendisse sed eros in tortor fermentum molestie. In egestas, ipsum id varius fringilla, nisl velit venenatis mi, in condimentum nisl sem nec lorem. Curabitur at augue justo. Phasellus in nulla libero. Aliquam non arcu a risus consequat iaculis sed id libero. Sed et est nunc.
-
-  Mauris sodales ipsum nec libero auctor, ac ultricies arcu mattis. Donec sed risus pretium, fringilla est ut, lobortis nisi. Sed at orci ipsum. Integer sit amet tempus leo. Suspendisse potenti. Vestibulum posuere ante non tortor tincidunt, vitae ullamcorper ante tempus. Duis et augue nec nunc malesuada vehicula. Quisque at velit eget purus elementum dapibus.
-
-  Nullam blandit efficitur purus, a consectetur nulla commodo sit amet. Sed vestibulum vitae est vel tincidunt. Quisque vel diam in odio lobortis gravida vel a felis. Proin gravida risus vitae sapien lobortis malesuada. Nulla facilisi. Aliquam vestibulum ac dui nec fringilla. Phasellus tristique ex nec mi aliquet laoreet. Curabitur lobortis enim nec nibh lobortis, et hendrerit justo blandit. Aliquam lacinia scelerisque nibh, at ultrices libero tempor in. Proin eget enim interdum, commodo leo non, consequat sapien. Duis eget purus nec felis fringilla tempus. Mauris vestibulum purus vel lectus lobortis venenatis. Fusce condimentum quam sed odio ullamcorper, vel convallis justo lacinia.
-`;
-
   // Example last update date
-  const lastUpdateDate = "June 1, 2024";
+  const lastUpdateDate = "June 30, 2024";
   return (
     <main className="bg-white">
       <Navbar />
@@ -26,8 +16,112 @@ const PrivacyPage = () => {
             <p className="text-md text-black font-medium mt-4">
               Last updated: {lastUpdateDate}
             </p>
-            <div className="prose mt-4 max-w-4xl">
-              <p className="text-black font-normal">{privacyPolicyContent}</p>
+            <div className="prose mt-4 max-w-4xl flex flex-col gap-5">
+              <p className="text-black font-medium">Introduction</p>
+              <p className="text-black font-normal">
+                StartupGrow AI ("we," "our," or "us") is committed to protecting
+                your privacy. This Privacy Policy outlines how we collect, use,
+                and protect your information when you use our services.
+              </p>
+
+              <p className="text-black font-medium">Information We Collect</p>
+              <p className="text-black font-normal">
+                Personal Information: We may collect personal information such
+                as your name, email address, and payment details when you sign
+                up for our services.
+              </p>
+              <p className="text-black font-normal">
+                Usage Data: We collect information on how you interact with our
+                services, including IP addresses, browser types, and pages
+                visited.
+              </p>
+
+              <p className="text-black font-medium">
+                How We Use Your Information
+              </p>
+              <p className="text-black font-normal">
+                Service Provision: To provide and improve our services, process
+                transactions, and communicate with you.
+              </p>
+              <p className="text-black font-normal">
+                Analytics: To analyze usage patterns and improve user
+                experience.
+              </p>
+              <p className="text-black font-normal">
+                Marketing: To send promotional materials, unless you opt out.
+              </p>
+
+              <p className="text-black font-medium">
+                Data Sharing and Disclosure
+              </p>
+              <p className="text-black font-normal">
+                We do not sell your personal information to third parties. We
+                may share your information with:
+              </p>
+              <p className="text-black font-normal">
+                Service Providers: Trusted third parties who assist in operating
+                our services.
+              </p>
+              <p className="text-black font-normal">
+                Legal Compliance: When required by law or to protect our rights
+                and users.
+              </p>
+
+              <p className="text-black font-medium">Data Security</p>
+              <p className="text-black font-normal">
+                We implement appropriate technical and organizational measures
+                to protect your data against unauthorized access, alteration, or
+                destruction.
+              </p>
+
+              <p className="text-black font-medium">Your Rights</p>
+              <p className="text-black font-normal">
+                Access: You can request access to your personal information.
+              </p>
+              <p className="text-black font-normal">
+                Correction: You have the right to request correction of
+                inaccurate data.
+              </p>
+              <p className="text-black font-normal">
+                Deletion: You can request deletion of your personal information,
+                subject to legal obligations.
+              </p>
+
+              <p className="text-black font-medium">Cookies</p>
+              <p className="text-black font-normal">
+                We use cookies to enhance your experience. You can manage cookie
+                preferences through your browser settings.
+              </p>
+
+              <p className="text-black font-medium">Third-Party Links</p>
+              <p className="text-black font-normal">
+                Our services may contain links to third-party websites. We are
+                not responsible for their privacy practices.
+              </p>
+
+              <p className="text-black font-medium">Changes to This Policy</p>
+              <p className="text-black font-normal">
+                We may update this Privacy Policy from time to time. We will
+                notify you of any changes by posting the new policy on our
+                website.
+              </p>
+
+              <p className="text-black font-medium">Contact Us</p>
+              <p className="text-black font-normal">
+                If you have any questions or concerns about this Privacy Policy,
+                please contact us at{" "}
+                <a
+                  className="text-[#FF033E] underline"
+                  href="mailto:diyanshu0360@gmail.com"
+                >
+                  here.
+                </a>
+              </p>
+
+              <p className="text-black font-medium">Consent</p>
+              <p className="text-black font-normal">
+                By using our services, you consent to this Privacy Policy.
+              </p>
             </div>
           </div>
         </div>
