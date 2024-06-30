@@ -110,22 +110,19 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white px-6 pt-2 pb-6 space-y-2 border-b-[1px] border-gray-300">
           <Link
-            href="#pricing"
+            href="/#process"
+            className="block font-medium text-md text-black"
+          >
+            Process
+          </Link>
+          <Link
+            href="/#pricing"
             className="block font-medium text-md text-black"
           >
             Pricing
           </Link>
-          <Link
-            href="/usecase"
-            className="block font-medium text-md text-black"
-          >
-            Use Case
-          </Link>
-          <Link
-            href="/affiliate"
-            className="block font-medium text-md text-black"
-          >
-            Affiliate
+          <Link href="/#faqs" className="block font-medium text-md text-black">
+            FAQ&apos;s
           </Link>
           <div className="pt-3">
             {session ? (
