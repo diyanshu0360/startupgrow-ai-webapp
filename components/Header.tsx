@@ -6,9 +6,14 @@ import logoImg from "@/public/logo.png";
 import { FaSignOutAlt, FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { ImSpinner8 } from "react-icons/im";
+import userIcon from "@/public/user-icon.png";
 
 export default function Header() {
   const { data: session } = useSession();
+  const avtarImg: any | undefined = session?.user?.image
+    ? session.user.image
+    : userIcon;
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,10 +24,10 @@ export default function Header() {
       await signOut();
     } catch (error) {
       console.error("Failed to logout:", error);
-     } finally {
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <header className="flex h-16 items-center justify-between px-4 md:px-6 py-3 bg-white text-black border-b-[1px] border-gray-300 sticky top-0 z-10">
@@ -39,13 +44,11 @@ export default function Header() {
             className="flex items-center space-x-2 cursor-pointer"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            {session?.user?.image && (
-              <img
-                src={session.user.image}
-                // alt="User Avatar"
-                className="rounded-full w-8 h-8"
-              />
-            )}
+            <img
+              src={avtarImg}
+              alt="User Avatar"
+              className="rounded-full w-8 h-8"
+            />
             <span className="hidden sm:block font-medium text-sm sm:text-md">
               @{session.user?.name}
             </span>
@@ -85,15 +88,14 @@ export default function Header() {
                 disabled={loading}
                 className="flex items-center justify-center w-full h-9 bg-[#FF033E] text-white rounded-md text-sm font-medium"
               >
-
-                {
-                  loading
-                    ? <ImSpinner8 className="animate-spin text-white h-full" />
-                    : <>
-                      <FaSignOutAlt className="mr-2 text-white" />
-                      Logout
-                    </>
-                }
+                {loading ? (
+                  <ImSpinner8 className="animate-spin text-white h-full" />
+                ) : (
+                  <>
+                    <FaSignOutAlt className="mr-2 text-white" />
+                    Logout
+                  </>
+                )}
               </button>
             </div>
           </div>
