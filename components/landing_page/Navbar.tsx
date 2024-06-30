@@ -41,7 +41,7 @@ const Navbar = () => {
               Pricing
             </Link>
             <Link href="/#faqs" className="font-medium text-md text-black">
-              FAQ's
+              FAQ&apos;s
             </Link>
           </div>
           <div className="md:flex space-x-3 items-center">

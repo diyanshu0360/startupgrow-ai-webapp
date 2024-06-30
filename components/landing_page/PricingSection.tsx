@@ -92,7 +92,7 @@ export default function Pricing() {
             Choose a Plan That Suits You
           </h2>
           <p className="text-md md:text-lg text-[#71717A] mt-2">
-            Select the Perfect Package for Your Startup's Marketing Needs
+            Select the Perfect Package for Your Startup&apos;s Marketing Needs
           </p>
         </div>
 
