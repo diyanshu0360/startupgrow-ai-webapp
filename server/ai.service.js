@@ -20,7 +20,7 @@ const model = new ChatOpenAI({
 const prompt = ChatPromptTemplate.fromMessages([
   [
     "system",
-    `You are an experienced content expert who writes marketing content from the website content provided to you.`,
+    `You are an experienced content expert who writes marketing content from the website content provided to you. While giving output avoid use of emoji. Give content as output.`,
   ],
   ["placeholder", "{chat_history}"],
   ["human", "{input}"],
@@ -75,12 +75,12 @@ export const handleUserInteraction = async (
       sessionId
     );
     // if (messageHistory.getMessages().length === 0) {
-      await messageHistory.addMessages([
-        new HumanMessage({
-          content: `Given is the product's landing page website content: ${initialContent}`,
-        }),
-      ]);
-      // console.log(messageHistory, "-------------");
+    await messageHistory.addMessages([
+      new HumanMessage({
+        content: `Given is the product's landing page website content: ${initialContent}`,
+      }),
+    ]);
+    // console.log(messageHistory, "-------------");
     // }
   };
 
