@@ -197,7 +197,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         // Fetch content from external scraper API
         const sessionId = productSelected.productId;
-        const responseScape = await fetch(`http://localhost:5002/fetch?url=${encodeURIComponent(productSelected.productUrl)}`);
+        const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productSelected.productUrl)}`);
         const initialContent = await responseScape.text();
 
 
