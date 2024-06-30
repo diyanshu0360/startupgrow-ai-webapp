@@ -16,21 +16,46 @@ const savedHistorySchema = new Schema(
           productName: { type: String, required: true },
           productUrl: { type: String, required: true },
           contentOption: { type: String, required: true },
+          productDescriptionContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          redditContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          hackerNewsContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          productHuntContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
           linkedInContent: {
-            type: {
-              responseContent: { type: [String], required: true },
-              cycleCompleted: { type: Boolean, required: true },
-            },
-            required: true,
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
           },
           twitterContent: {
-            type: {
-              responseContent: { type: [String], required: true },
-              cycleCompleted: { type: Boolean, required: true },
-            },
-            required: true,
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
           },
-          // cycleCompleted: { type: Boolean, required: true },
+          blogContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          coldEmailContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          coldMessageContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
+          freeToolIdeaContent: {
+            responseContent: { type: [String], required: true },
+            cycleCompleted: { type: Boolean, required: true },
+          },
           createdAt: { type: Date, required: true },
         },
       ],

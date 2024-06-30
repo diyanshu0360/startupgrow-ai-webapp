@@ -13,46 +13,38 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const cards = [
-  // {
-  //   name: "Product Descriptions",
-  //   status: "",
-  //   subtitle: "Short descriptions of products",
-  //   logo: null,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Reddit Posts",
-  //   status: "loading",
-  //   subtitle: "Trending posts on Reddit",
-  //   logo: redditImg,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Hacker-News Posts",
-  //   status: "loading",
-  //   subtitle: "Top news from Hacker News",
-  //   logo: hackerNewsImg,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Product-Hunt Descriptions",
-  //   status: "loading",
-  //   subtitle: "Descriptions from Product Hunt",
-  //   logo: productHuntImg,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Product-Hunt Comments",
-  //   status: "loading",
-  //   subtitle: "Comments on Product Hunt",
-  //   logo: productHuntImg,
-  //   is_selected: false,
-  //   response: [],
-  // },
+  {
+    name: "Product Descriptions",
+    status: "",
+    subtitle: "Short descriptions of products",
+    logo: null,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Reddit Posts",
+    status: "loading",
+    subtitle: "Trending posts on Reddit",
+    logo: redditImg,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Hacker-News Posts",
+    status: "loading",
+    subtitle: "Top news from Hacker News",
+    logo: hackerNewsImg,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Product-Hunt",
+    status: "loading",
+    subtitle: "Tagline, Description & Comment from Product Hunt",
+    logo: productHuntImg,
+    is_selected: false,
+    response: [],
+  },
   {
     name: "LinkedIn Posts",
     status: "loading",
@@ -69,46 +61,38 @@ const cards = [
     is_selected: false,
     response: [],
   },
-  // {
-  //   name: "Blogs",
-  //   status: "loading",
-  //   subtitle: "Blog articles",
-  //   logo: null,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Headlines",
-  //   status: "loading",
-  //   subtitle: "Latest headlines",
-  //   logo: null,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Cold Emails",
-  //   status: "loading",
-  //   subtitle: "Templates for cold emails",
-  //   logo: mailImg,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Cold Messages",
-  //   status: "loading",
-  //   subtitle: "Templates for cold messages",
-  //   logo: null,
-  //   is_selected: false,
-  //   response: [],
-  // },
-  // {
-  //   name: "Free-Tool Ideas",
-  //   status: "loading",
-  //   subtitle: "Ideas for free tools",
-  //   logo: null,
-  //   is_selected: false,
-  //   response: [],
-  // },
+  {
+    name: "Blogs",
+    status: "loading",
+    subtitle: "Blog articles",
+    logo: null,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Cold Emails",
+    status: "loading",
+    subtitle: "Templates for cold emails",
+    logo: mailImg,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Cold Messages",
+    status: "loading",
+    subtitle: "Templates for cold messages",
+    logo: null,
+    is_selected: false,
+    response: [],
+  },
+  {
+    name: "Free-Tool Ideas",
+    status: "loading",
+    subtitle: "Ideas for free tools",
+    logo: null,
+    is_selected: false,
+    response: [],
+  },
 ];
 
 export default function Result() {
@@ -153,9 +137,14 @@ export default function Result() {
       });
 
       if (response.ok) {
-        const { textResponse, notAllowed } = await response.json();
+        const { textResponse, pageNotFound, notAllowed } =
+          await response.json();
+
+        console.log(textResponse, "///////////////");
         if (notAllowed) {
           router.replace("/dashboard/pricing");
+        } else if (pageNotFound) {
+          router.replace("/dashboard");
         } else {
           let updatedArray = [...cardDetail];
           updatedArray.map((item, indexNum) => {
@@ -190,7 +179,7 @@ export default function Result() {
 
   const callMultipleApis = async () => {
     fetchProductData(cardDetail[0].name);
-    // fetchProductData(cardDetail[1].name);
+    fetchProductData(cardDetail[1].name);
     // fetchProductData(cardDetail[2].name);
     // fetchProductData(cardDetail[3].name);
     // fetchProductData(cardDetail[4].name);
@@ -199,9 +188,6 @@ export default function Result() {
     // fetchProductData(cardDetail[7].name);
     // fetchProductData(cardDetail[8].name);
     // fetchProductData(cardDetail[9].name);
-    // fetchProductData(cardDetail[10].name);
-    // fetchProductData(cardDetail[11].name);
-    // fetchProductData(cardDetail[12].name);
   };
 
   useEffect(() => {
@@ -209,6 +195,8 @@ export default function Result() {
       callMultipleApis();
     }
   }, [session]);
+
+  console.log(cardDetail[selectedCard].response[0]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -226,6 +214,7 @@ export default function Result() {
               name={card.name}
               status={card.status}
               subtitle={card.subtitle}
+              response={card.response}
               logo={card.logo}
               isOpen={card.is_selected}
               onClick={() => handleCardClick(index)}
@@ -233,27 +222,43 @@ export default function Result() {
           ))}
         </div>
         <div className="hidden md:block w-full md:w-1/2 p-4 overflow-y-auto">
-          <div className="flex flex-row justify-end">
+          {/* <div className="flex flex-row justify-end">
             <button className="h-9 w-32 bg-[#FF033E] rounded-md">
               <span className="text-white font-medium text-sm">
                 Download Pdf
               </span>
             </button>
-          </div>
-          <div>
+          </div> */}
+          <div className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md">
             <h2 className="text-xl font-bold">
               {cardDetail[selectedCard].name}
             </h2>
             <p className="mt-2">{cardDetail[selectedCard].subtitle}</p>
-            <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          </div>
+          <div className="flex flex-col gap-2 mt-2">
+            {cardDetail[selectedCard].response.map(
+              (item: any, index: number) => {
+                const newArray = item.split("\n");
+
+                console.log(newArray);
+                return (
+                  <div
+                    key={index}
+                    className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col gap-2 cursor-pointer bg-[#F4F4F5] rounded-md"
+                  >
+                    {newArray.map((text: any, textIndex: number) => (
+                      <>
+                        {text.trim() !== "" && (
+                          <p className="text-md font-normal" key={textIndex}>
+                            {text}
+                          </p>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                );
+              }
+            )}
           </div>
         </div>
       </div>

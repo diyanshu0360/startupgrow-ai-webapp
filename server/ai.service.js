@@ -78,13 +78,14 @@ export const handleUserInteraction = async (
     const messageHistory = await withMessageHistory.getMessageHistory(
       sessionId
     );
-    if (messageHistory.getMessages().length === 0) {
+    // if (messageHistory.getMessages().length === 0) {
       await messageHistory.addMessages([
         new HumanMessage({
           content: `Given is the product's landing page website content: ${initialContent}`,
         }),
       ]);
-    }
+      // console.log(messageHistory, "-------------");
+    // }
   };
 
   // Initialize session with the provided initial content
@@ -102,10 +103,10 @@ export const handleUserInteraction = async (
       { input: userInput },
       config
     );
-    console.log(response, "----------");
+    // console.log(response, "----------");
     responseArray.push(response);
   }
 
-  console.log("Completed " + sessionId);
+  console.log("Completed " + responseArray.length + sessionId);
   return responseArray;
 };

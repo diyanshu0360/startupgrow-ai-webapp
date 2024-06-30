@@ -21,7 +21,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             });
         }
 
-        console.log(userDetail, '.....')
+        console.log(typeof String(userDetail), '.....')
 
         if (userDetail.productCredits <= 0) {
             userDetail.productCredits = 0
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         // Generate a new product ID
         const productCount = userHistory.allProductHistory.length + 1;
-        const productId = `${userDetail._id.slice(6)}${String(productCount).padStart(4, "0")}`;
+        const productId = `${String(userDetail._id).slice(6)}${String(productCount).padStart(4, "0")}`;
 
         // Add the new product to the user's history
         userHistory.allProductHistory.push({
@@ -43,8 +43,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
             productName,
             productUrl,
             contentOption,
+            productDescriptionContent: { responseContent: [], cycleCompleted: false },
+            redditContent: { responseContent: [], cycleCompleted: false },
+            hackerNewsContent: { responseContent: [], cycleCompleted: false },
+            productHuntContent: { responseContent: [], cycleCompleted: false },
             linkedInContent: { responseContent: [], cycleCompleted: false },
             twitterContent: { responseContent: [], cycleCompleted: false },
+            blogContent: { responseContent: [], cycleCompleted: false },
+            coldEmailContent: { responseContent: [], cycleCompleted: false },
+            coldMessageContent: { responseContent: [], cycleCompleted: false },
+            freeToolIdeaContent: { responseContent: [], cycleCompleted: false },
             createdAt: new Date(),
         });
 
