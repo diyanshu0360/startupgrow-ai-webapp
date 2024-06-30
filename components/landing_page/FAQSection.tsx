@@ -88,14 +88,14 @@ const FAQSection: React.FC = () => {
               <div
                 key={index}
                 onClick={() => toggleFAQ(index)}
-                className={`px-3 sm:px-4 py-2 sm:py-3 flex ${
+                className={`px-3 sm:px-4 py-3 flex ${
                   activeIndex === index
                     ? "flex-col"
                     : "flex-row justify-between items-center"
                 } cursor-pointer bg-[#F4F4F5] rounded-md border border-gray-300`}
               >
                 {/* Question and Toggle */}
-                <div className="flex flex-grow items-center justify-between cursor-pointer mb-1">
+                <div className="flex flex-grow items-center justify-between cursor-pointer">
                   <h3 className="text-sm sm:text-md text-black font-medium">
                     {faq.question}
                   </h3>
@@ -133,7 +133,7 @@ const FAQSection: React.FC = () => {
                 </div>
                 {/* Answer */}
                 {activeIndex === index && (
-                  <div className="text-sm sm:text-md text-[#71717A] font-normal">
+                  <div className="text-sm sm:text-md text-[#71717A] font-normal mt-1">
                     {faq.answer}
                   </div>
                 )}

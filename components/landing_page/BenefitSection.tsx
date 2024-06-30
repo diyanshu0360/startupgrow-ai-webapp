@@ -21,7 +21,7 @@ const BenefitSection: React.FC = () => {
       </div>
 
       <div className="container mx-auto flex flex-col md:flex-row justify-center items-stretch space-y-4 md:space-y-0 md:space-x-4 px-4">
-        <div className="bg-[#F4F4F5] w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
+        <div className="bg-[#F4F4F5] w-full md:w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
           <FaChartLine className="text-[#FF033E] w-12 h-12 mb-4" />
           <h3 className="text-xl font-semibold text-black mt-4">Scrape</h3>
           <p className="text-md text-[#71717A] mt-2">
@@ -29,7 +29,7 @@ const BenefitSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-[#F4F4F5] w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
+        <div className="bg-[#F4F4F5] w-full md:w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
           <FaShieldAlt className="text-[#FF033E] w-12 h-12 mb-4" />
           <h3 className="text-xl font-bold mb-2">Analyze & Create</h3>
           <p className="text-md text-[#71717A] mt-2">
@@ -38,7 +38,7 @@ const BenefitSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-[#F4F4F5] w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
+        <div className="bg-[#F4F4F5] w-full md:w-1/3 border border-gray-300 py-8 px-4 rounded-md flex flex-col items-center text-center">
           <FaChartLine className="text-[#FF033E] w-12 h-12 mb-4" />
           <h3 className="text-xl font-bold mb-2">Publish & Grow</h3>
           <p className="text-md text-[#71717A] mt-2">
