@@ -7,7 +7,7 @@ export default function Pricing() {
       title: "Starter Plan",
       subtitle: "Great for individuals",
       price: "$5",
-      features: ["Feature 1", "Feature 2", "Feature 3"],
+      features: ["3 credits", "30 days marketing content", "24/7 assistance"],
       button: "Buy Now",
       onPressLink: "/dashboard",
     },
@@ -15,7 +15,7 @@ export default function Pricing() {
       title: "Pro Plan",
       subtitle: "Perfect for professionals",
       price: "$10",
-      features: ["Feature 1", "Feature 2", "Feature 3"],
+      features: ["10 credits", "30 days marketing content", "24/7 assistance"],
       button: "Buy Now",
       popular: true,
       onPressLink: "/dashboard",
@@ -46,7 +46,7 @@ export default function Pricing() {
             </span>
           </div>
           <div className="text-black text-sm font-normal mb-2 md:mb-4">
-            {card.subtitle} Lorem ipsum dolor sit amet.
+            {card.subtitle}
           </div>
           <div className="flex flex-col gap-1 md:gap-2 md:mb-5">
             {card.features.map((feature: any, i: any) => (

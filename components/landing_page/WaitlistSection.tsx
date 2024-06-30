@@ -10,14 +10,14 @@ const WaitlistSection: React.FC = () => {
               Waitlist
             </span> */}
             <h2 className="text-3xl md:text-4xl font-semibold text-black mt-4">
-              Lorem ipsum dolor sit.
+              Elevate your marketing content
             </h2>
             <p className="text-md md:text-lg text-[#71717A] mt-2">
               Sign up now to be the first to know about our launch!
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3 justify-center">
+          {/* <div className="flex flex-wrap gap-3 justify-center">
             <div className="text-sm font-normal text-black flex flex-row justify-center items-center h-9 border w-32 rounded-md">
               Feature 1
             </div>
@@ -27,7 +27,7 @@ const WaitlistSection: React.FC = () => {
             <div className="text-sm font-normal text-black flex flex-row justify-center items-center h-9 border w-32 rounded-md">
               Feature 3
             </div>
-          </div>
+          </div> */}
 
           {/* Button Section */}
           <div className="flex flex-row justify-center items-center mt-6 md:mt-8">

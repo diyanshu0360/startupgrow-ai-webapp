@@ -4,19 +4,19 @@ import React, { useState } from "react";
 const FAQSection: React.FC = () => {
   const faqs = [
     {
-      question: "What is Lorem Ipsum?",
+      question: "What is StartupGrow ai?",
       answer:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s.",
+        "StartupGrow AI is your go-to tool for easy and impactful writing of marketing content over 30 days. It is very easy to use, just paste your products URL and that's it. It will provide 30 days marketing content according to your product.",
     },
     {
-      question: "Why do we use it?",
+      question: "How do I stay updated on StartupGrow AI's new features and releases?",
       answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        "Stay informed by signing up on dashboard and following our founders on social media for the latest updates.",
     },
     {
-      question: "Where does it come from?",
+      question: "Is customer support available?",
       answer:
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+        "Yes, we offer 24/7 customer support to address any questions or feedback you may have.",
     },
   ];
 
