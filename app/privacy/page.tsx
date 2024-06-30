@@ -19,7 +19,7 @@ const PrivacyPage = () => {
             <div className="prose mt-4 max-w-4xl flex flex-col gap-5">
               <p className="text-black font-medium">Introduction</p>
               <p className="text-black font-normal">
-                StartupGrow AI ("we," "our," or "us") is committed to protecting
+                StartupGrow AI (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting
                 your privacy. This Privacy Policy outlines how we collect, use,
                 and protect your information when you use our services.
               </p>

@@ -19,7 +19,7 @@ const TermsAndConditonPage = () => {
             <div className="prose mt-4 max-w-4xl flex flex-col gap-5">
               <p className="text-black font-medium">Acceptance of Terms</p>
               <p className="text-black font-normal">
-                By accessing and using StartupGrow AI ("we," "our," or "us")
+                By accessing and using StartupGrow AI (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;)
                 services, you agree to comply with these Terms and Conditions.
                 If you do not agree, please do not use our services.
               </p>
@@ -68,7 +68,7 @@ const TermsAndConditonPage = () => {
 
               <p className="text-black font-medium">Disclaimer of Warranties</p>
               <p className="text-black font-normal">
-                Our services are provided "as is" without any warranties of any
+                Our services are provided &quot;as is&quot; without any warranties of any
                 kind. We do not guarantee the accuracy or reliability of the
                 content generated.
               </p>

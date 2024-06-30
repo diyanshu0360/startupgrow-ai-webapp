@@ -9,7 +9,7 @@ const FeatureSection: React.FC = () => {
             Our Features
           </h2>
           <p className="text-md md:text-lg text-[#71717A] mt-2">
-            Your Startup's Marketing Efforts with Precision and Efficiency
+            Your Startup&apos;s Marketing Efforts with Precision and Efficiency
           </p>
         </div>
       </div>
