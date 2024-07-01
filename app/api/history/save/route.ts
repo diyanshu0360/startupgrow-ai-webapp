@@ -37,13 +37,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const productCount = userHistory.allProductHistory.length + 1;
         const productId = `${String(userDetail._id).slice(6)}${String(productCount).padStart(4, "0")}`;
 
+
+        const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productUrl)}`);
+        const initalContnet = await responseScape.text();
+
         // Add the new product to the user's history
         userHistory.allProductHistory.push({
             productId,
             productName,
             productUrl,
             contentOption,
-            initalContnet: "",
+            initalContnet,
             productDescriptionContent: { responseContent: [], cycleCompleted: false },
             redditContent: { responseContent: [], cycleCompleted: false },
             hackerNewsContent: { responseContent: [], cycleCompleted: false },

@@ -198,74 +198,61 @@ export async function POST(req: NextRequest, res: NextResponse) {
         // Fetch content from external scraper API
         const sessionId = productSelected.productId;
 
-        console.log("----------")
-        let intitalContentWrite: any;
-        if (productSelected.initialContent == "") {
-            const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productSelected.productUrl)}`);
-            intitalContentWrite = await responseScape.text();
-            productSelected.initialContent = intitalContentWrite;
-            console.log("[[[[[[[[[[[[--------------]]]]]]]]]]]]]")
-        } else {
-            intitalContentWrite = productSelected.initialContent
-        }
-
-
-        console.log(intitalContentWrite + "//////////// intitalContent")
-
         // Call handleUserInteraction with fetched initialContent
-        const response = await handleUserInteraction(sessionId, intitalContentWrite, promptSelected);
+        const response = await handleUserInteraction(sessionId, productSelected.initialContent, promptSelected);
+        // const response: any = ["h", "e", "l"]
 
         // Update responseContent and cycleCompleted based on productType
         let responseArray: any = [];
         switch (productType) {
             case "Product Descriptions":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.productDescriptionContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.productDescriptionContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.productDescriptionContent.cycleCompleted = true;
                 break;
             case "Reddit Posts":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.redditContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.redditContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.redditContent.cycleCompleted = true;
                 break;
             case "Hacker-News Posts":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.hackerNewsContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.hackerNewsContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.hackerNewsContent.cycleCompleted = true;
                 break;
             case "Product-Hunt":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.productHuntContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.productHuntContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.productHuntContent.cycleCompleted = true;
                 break;
             case "LinkedIn Posts":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.linkedInContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.linkedInContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.linkedInContent.cycleCompleted = true;
                 break;
             case "Twitter Posts":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.twitterContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.twitterContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.twitterContent.cycleCompleted = true;
                 break;
             case "Blogs":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.blogContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.blogContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.blogContent.cycleCompleted = true;
                 break;
             case "Cold Emails":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.coldEmailContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.coldEmailContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.coldEmailContent.cycleCompleted = true;
                 break;
             case "Cold Messages":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.coldMessageContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.coldMessageContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.coldMessageContent.cycleCompleted = true;
                 break;
             case "Free-Tool Ideas":
                 responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.freeToolIdeaContent.responseContent = response.map(item => item.lc_kwargs.content);
+                productSelected.freeToolIdeaContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
                 productSelected.freeToolIdeaContent.cycleCompleted = true;
                 break;
         }

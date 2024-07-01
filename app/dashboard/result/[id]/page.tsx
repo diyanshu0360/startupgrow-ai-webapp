@@ -180,14 +180,14 @@ export default function Result() {
   const callMultipleApis = async () => {
     fetchProductData(cardDetail[0].name);
     fetchProductData(cardDetail[1].name);
-    // fetchProductData(cardDetail[2].name);
-    // fetchProductData(cardDetail[3].name);
-    // fetchProductData(cardDetail[4].name);
-    // fetchProductData(cardDetail[5].name);
-    // fetchProductData(cardDetail[6].name);
-    // fetchProductData(cardDetail[7].name);
-    // fetchProductData(cardDetail[8].name);
-    // fetchProductData(cardDetail[9].name);
+    fetchProductData(cardDetail[2].name);
+    fetchProductData(cardDetail[3].name);
+    fetchProductData(cardDetail[4].name);
+    fetchProductData(cardDetail[5].name);
+    fetchProductData(cardDetail[6].name);
+    fetchProductData(cardDetail[7].name);
+    fetchProductData(cardDetail[8].name);
+    fetchProductData(cardDetail[9].name);
   };
 
   useEffect(() => {
