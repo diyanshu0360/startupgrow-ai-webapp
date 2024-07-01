@@ -180,14 +180,14 @@ export default function Result() {
   const callMultipleApis = async () => {
     fetchProductData(cardDetail[0].name);
     fetchProductData(cardDetail[1].name);
-    fetchProductData(cardDetail[2].name);
-    fetchProductData(cardDetail[3].name);
-    fetchProductData(cardDetail[4].name);
-    fetchProductData(cardDetail[5].name);
-    fetchProductData(cardDetail[6].name);
-    fetchProductData(cardDetail[7].name);
-    fetchProductData(cardDetail[8].name);
-    fetchProductData(cardDetail[9].name);
+    // fetchProductData(cardDetail[2].name);
+    // fetchProductData(cardDetail[3].name);
+    // fetchProductData(cardDetail[4].name);
+    // fetchProductData(cardDetail[5].name);
+    // fetchProductData(cardDetail[6].name);
+    // fetchProductData(cardDetail[7].name);
+    // fetchProductData(cardDetail[8].name);
+    // fetchProductData(cardDetail[9].name);
   };
 
   useEffect(() => {
@@ -240,7 +240,7 @@ export default function Result() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="md:flex flex-1 overflow-hidden">
-        <div className="flex flex-row mx-4 mt-4 justify-end md:hidden">
+        <div className="flex flex-row mx-4 my-4 justify-end md:hidden">
           <button
             onClick={generatePdf}
             className="h-8 w-28 bg-[#FF033E] rounded-md"
