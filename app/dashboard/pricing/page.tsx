@@ -19,17 +19,29 @@ export default function Pricing() {
   const cards = [
     {
       title: "Starter Plan",
-      subtitle: "Great for individuals",
-      price: "100 credits",
-      features: ["Feature 1", "Feature 2", "Feature 3"],
+      subtitle: "Great for Launch",
+      price: "$39",
+      discounted: "$19",
+      features: [
+        "3 Credits (1 credit = 30 days of content)",
+        "30 days Marketing Content",
+        "24/7 Support",
+        "Upcoming Features",
+      ],
       button: "Buy Now",
       onPressLink: paymentUrl,
     },
     {
       title: "Pro Plan",
-      subtitle: "Perfect for professionals",
-      price: "200 credits",
-      features: ["Feature 1", "Feature 2", "Feature 3"],
+      subtitle: "Perfect for Growth",
+      price: "$59",
+      discounted: "$29",
+      features: [
+        "6 Credits (1 credit = 30 days of content)",
+        "30 days Marketing Content",
+        "24/7 Support",
+        "Upcoming Features",
+      ],
       button: "Buy Now",
       popular: true,
       onPressLink: paymentUrl,
@@ -38,7 +50,7 @@ export default function Pricing() {
 
   const renderCard = (card: any, index: number) => (
     <div className="relative py-2 bg-white" key={index}>
-      <div className="overflow-hidden shadow-lg p-4 border rounded-md w-60 sm:w-64">
+      <div className="overflow-hidden shadow-lg p-4 border rounded-md w-64 sm:w-72">
         {card.popular && (
           <span className="bg-[#F4F4F5] text-[#FF033E] text-[11px] font-bold px-3 py-1 rounded-full absolute top-[-6px] border border-[#FF033E]">
             Most Popular
@@ -49,19 +61,22 @@ export default function Pricing() {
             {card.title}
           </div>
           <div className="text-[#FF033E] text-3xl font-bold mb-3">
-            $5{" "}
+            {card.discounted}{" "}
+            <span className="text-[#71717A] line-through text-3xl font-medium">
+              {card.price}
+            </span>{" "}
             <span className="text-[#71717A] font-medium text-sm">
               /one time
             </span>
           </div>
           <div className="text-black text-sm font-normal mb-2">
-            {card.subtitle} Lorem ipsum dolor sit amet.
+            {card.subtitle}
           </div>
           <div className="flex flex-col gap-1 mb-5">
             {card.features.map((feature: any, i: number) => (
               <div className="flex flex-row gap-1 items-center" key={i}>
                 <IoMdCheckmark size={16} />
-                <p className="font-normal text-sm text-black">{feature}</p>
+                <p className="font-medium text-sm text-black">{feature}</p>
               </div>
             ))}
           </div>
@@ -79,7 +94,25 @@ export default function Pricing() {
     <div className="h-screen relative">
       <Header />
       <div className="absolute inset-x-0 top-16 h-[700px] rotate-180 text-gray-500/20 opacity-70  [mask-image:linear-gradient(to_bottom,transparent,white)] -z-20">
-        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse" x="50%" y="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-pattern)"></rect></svg>
+        <svg
+          className="absolute inset-0 h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="grid-pattern"
+              width="32"
+              height="32"
+              patternUnits="userSpaceOnUse"
+              x="50%"
+              y="100%"
+              patternTransform="translate(0 -1)"
+            >
+              <path d="M0 32V.5H32" fill="none" stroke="currentColor"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
+        </svg>
       </div>
       <div className="min-h-[calc(100%_-_4rem)] flex items-center justify-center flex-col">
         <div className="border bg-white border-[#F4F4F5] rounded-lg py-4 px-4 md:px-20 flex flex-col gap-2">
@@ -101,15 +134,17 @@ export default function Pricing() {
             <div className="bg-[#F4F4F5] h-10 rounded-md border border-gray-300 flex flex-row justify-center items-center">
               <button
                 onClick={() => setIsProSelected(false)}
-                className={`text-sm font-medium h-8 w-24 rounded-[4px] mx-1 ${isProSelected ? "text-black" : "text-white bg-[#FF033E]"
-                  }`}
+                className={`text-sm font-medium h-8 w-24 rounded-[4px] mx-1 ${
+                  isProSelected ? "text-black" : "text-white bg-[#FF033E]"
+                }`}
               >
                 Starter
               </button>
               <button
                 onClick={() => setIsProSelected(true)}
-                className={`text-sm font-medium h-8 w-24 rounded-sm mx-1 ${!isProSelected ? "text-black" : "text-white bg-[#FF033E]"
-                  }`}
+                className={`text-sm font-medium h-8 w-24 rounded-sm mx-1 ${
+                  !isProSelected ? "text-black" : "text-white bg-[#FF033E]"
+                }`}
               >
                 Pro
               </button>

@@ -6,9 +6,10 @@ export default function Pricing() {
     {
       title: "Starter Plan",
       subtitle: "Great for Launch",
-      price: "$5",
+      price: "$39",
+      discounted: "$19",
       features: [
-        "3 Credits",
+        "3 Credits (1 credit = 30 days of content)",
         "30 days Marketing Content",
         "24/7 Support",
         "Upcoming Features",
@@ -19,9 +20,10 @@ export default function Pricing() {
     {
       title: "Pro Plan",
       subtitle: "Perfect for Growth",
-      price: "$10",
+      price: "$59",
+      discounted: "$29",
       features: [
-        "5 Credits",
+        "6 Credits (1 credit = 30 days of content)",
         "30 days Marketing Content",
         "24/7 Support",
         "Upcoming Features",
@@ -50,7 +52,10 @@ export default function Pricing() {
             {card.title}
           </div>
           <div className="text-[#FF033E] text-3xl font-bold mb-2 md:mb-4">
-            {card.price}{" "}
+            {card.discounted}{" "}
+            <span className="text-[#71717A] line-through text-3xl font-medium">
+              {card.price}
+            </span>{" "}
             <span className="text-[#71717A] font-medium text-sm">
               /one time
             </span>
@@ -62,7 +67,7 @@ export default function Pricing() {
             {card.features.map((feature: any, i: any) => (
               <div className="flex flex-row gap-1 items-center" key={i}>
                 <IoMdCheckmark size={16} />
-                <p className="font-normal text-sm text-black">{feature}</p>
+                <p className="font-medium text-sm text-black">{feature}</p>
               </div>
             ))}
           </div>

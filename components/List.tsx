@@ -1,6 +1,7 @@
 "use client";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { ImSpinner8 } from "react-icons/im";
+import { FaCopy, FaCheck } from "react-icons/fa";
 import Image from "next/image";
 
 export default function List({
@@ -11,6 +12,8 @@ export default function List({
   logo,
   isOpen,
   onClick,
+  handleCopy,
+  copyStatus,
 }: any) {
   const getStatusIcon = () => {
     if (status === "loading") {
@@ -58,24 +61,34 @@ export default function List({
         <div className="flex flex-col gap-1">
           {response.map((item: any, index: number) => {
             const newArray = item.split("\n");
-            console.log(newArray);
             return (
               <div
                 key={index}
-                className="md:hidden px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md mt-2 gap-2"
+                className="md:hidden px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center cursor-pointer bg-[#F4F4F5] rounded-md mt-2 gap-2"
               >
-                {newArray.map((text: any, textIndex: number) => (
-                  <>
-                    {text.trim() !== "" && (
-                      <p
-                        className="text-black font-normal text-sm"
-                        key={textIndex}
-                      >
-                        {text}
-                      </p>
-                    )}
-                  </>
-                ))}
+                <div className="flex flex-col gap-2">
+                  {newArray.map(
+                    (text: any, textIndex: number) =>
+                      text.trim() !== "" && (
+                        <p
+                          className="text-black font-normal text-sm"
+                          key={textIndex}
+                        >
+                          {text}
+                        </p>
+                      )
+                  )}
+                </div>
+                <button
+                  onClick={() => handleCopy(item, index)}
+                  className="ml-2"
+                >
+                  {copyStatus[index] ? (
+                    <FaCheck className="text-red-500" />
+                  ) : (
+                    <FaCopy />
+                  )}
+                </button>
               </div>
             );
           })}
