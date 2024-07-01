@@ -15,6 +15,7 @@ const savedHistorySchema = new Schema(
           productId: { type: String, unique: true, required: true },
           productName: { type: String, required: true },
           productUrl: { type: String, required: true },
+          initalContnet: { type: String, required: true},
           contentOption: { type: String, required: true },
           productDescriptionContent: {
             responseContent: { type: [String], required: true },

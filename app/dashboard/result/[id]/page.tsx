@@ -241,12 +241,12 @@ export default function Result() {
       <Header />
       <div className="md:flex flex-1 overflow-hidden">
         <div className="flex flex-row mx-4 my-4 justify-end md:hidden">
-          <button
+          {/* <button
             onClick={generatePdf}
             className="h-8 w-28 bg-[#FF033E] rounded-md"
           >
             <span className="text-white font-medium text-sm">Download Pdf</span>
-          </button>
+          </button> */}
         </div>
         <div className="w-full md:w-1/2 p-4 overflow-y-auto flex flex-col gap-2">
           {cardDetail.map((card: any, index: number) => (
@@ -275,7 +275,7 @@ export default function Result() {
               </span>
             </button>
           </div>
-          <div className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md">
+          <div className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md mt-4">
             <h2 className="text-xl font-bold">
               {cardDetail[selectedCard].name}
             </h2>

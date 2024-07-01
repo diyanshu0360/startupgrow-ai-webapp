@@ -43,6 +43,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             productName,
             productUrl,
             contentOption,
+            initalContnet: "",
             productDescriptionContent: { responseContent: [], cycleCompleted: false },
             redditContent: { responseContent: [], cycleCompleted: false },
             hackerNewsContent: { responseContent: [], cycleCompleted: false },

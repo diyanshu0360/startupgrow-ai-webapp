@@ -197,12 +197,23 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         // Fetch content from external scraper API
         const sessionId = productSelected.productId;
-        const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productSelected.productUrl)}`);
-        const initialContent = await responseScape.text();
 
+        console.log("----------")
+        let intitalContentWrite: any;
+        if (productSelected.initialContent == "") {
+            const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productSelected.productUrl)}`);
+            intitalContentWrite = await responseScape.text();
+            productSelected.initialContent = intitalContentWrite;
+            console.log("[[[[[[[[[[[[--------------]]]]]]]]]]]]]")
+        } else {
+            intitalContentWrite = productSelected.initialContent
+        }
+
+
+        console.log(intitalContentWrite + "//////////// intitalContent")
 
         // Call handleUserInteraction with fetched initialContent
-        const response = await handleUserInteraction(sessionId, initialContent, promptSelected);
+        const response = await handleUserInteraction(sessionId, intitalContentWrite, promptSelected);
 
         // Update responseContent and cycleCompleted based on productType
         let responseArray: any = [];
