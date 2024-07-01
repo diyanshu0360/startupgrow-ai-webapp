@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 import Subscription from "@/models/Subscription";
 import User from "@/models/User";
 import connect from "@/utils/db";

@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 import SavedHistory from "@/models/SavedHistory";
 import User from "@/models/User";
 import connect from "@/utils/db";

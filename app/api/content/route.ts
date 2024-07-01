@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 import SavedHistory from "@/models/SavedHistory";
 import connect from "@/utils/db";
 import { NextResponse, NextRequest } from "next/server";

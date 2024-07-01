@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 import User from "@/models/User";
 import { NextResponse, NextRequest } from "next/server";
 import connect from "@/utils/db";
