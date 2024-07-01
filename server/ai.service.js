@@ -1,4 +1,3 @@
-// Import necessary modules
 import { InMemoryChatMessageHistory } from "@langchain/core/chat_history";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import {
@@ -20,7 +19,7 @@ const model = new ChatOpenAI({
 const prompt = ChatPromptTemplate.fromMessages([
   [
     "system",
-    `You are an experienced content expert who writes marketing content from the website content provided to you. Strictly give asked content as output. Consider yourself as 'I'. Strictly avoid writing content in 3rd person.`,
+    "You are an experienced content expert who writes marketing content from the website content provided to you. Strictly give asked content as output. Consider yourself as 'I'. Strictly avoid writing content in 3rd person.",
   ],
   ["placeholder", "{chat_history}"],
   ["human", "{input}"],
@@ -70,18 +69,19 @@ export const handleUserInteraction = async (
   });
 
   // Initialize session with initial content if not present
+
+  console.log(
+    `Given is the product's landing page website content: ${initialContent}`
+  );
   const initializeSession = async (sessionId, initialContent) => {
     const messageHistory = await withMessageHistory.getMessageHistory(
       sessionId
     );
-    // if (messageHistory.getMessages().length === 0) {
     await messageHistory.addMessages([
       new HumanMessage({
         content: `Given is the product's landing page website content: ${initialContent}`,
       }),
     ]);
-    // console.log(messageHistory, "-------------");
-    // }
   };
 
   // Initialize session with the provided initial content
@@ -92,17 +92,13 @@ export const handleUserInteraction = async (
 
   // Handle user messages
   let responseArray = [];
-  console.log("Half Completed " + userMessages.length);
   for (const userInput of userMessages) {
-    console.log(userInput, "---userInput");
     const response = await withMessageHistory.invoke(
       { input: userInput },
       config
     );
-    // console.log(response, "----------");
     responseArray.push(response);
   }
 
-  console.log("Completed " + responseArray.length + sessionId);
   return responseArray;
 };

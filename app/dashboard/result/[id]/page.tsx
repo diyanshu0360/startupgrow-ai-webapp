@@ -25,7 +25,7 @@ const cards = [
   },
   {
     name: "Reddit Posts",
-    status: "loading",
+    status: "",
     subtitle: "Trending posts on Reddit",
     logo: redditImg,
     is_selected: false,
@@ -33,7 +33,7 @@ const cards = [
   },
   {
     name: "Hacker-News Posts",
-    status: "loading",
+    status: "",
     subtitle: "Top news from Hacker News",
     logo: hackerNewsImg,
     is_selected: false,
@@ -41,7 +41,7 @@ const cards = [
   },
   {
     name: "Product-Hunt",
-    status: "loading",
+    status: "",
     subtitle: "Tagline, Description & Comment from Product Hunt",
     logo: productHuntImg,
     is_selected: false,
@@ -49,7 +49,7 @@ const cards = [
   },
   {
     name: "LinkedIn Posts",
-    status: "loading",
+    status: "",
     subtitle: "Recent posts on LinkedIn",
     logo: linkedinImg,
     is_selected: false,
@@ -57,7 +57,7 @@ const cards = [
   },
   {
     name: "Twitter Posts",
-    status: "success",
+    status: "",
     subtitle: "Latest tweets",
     logo: twitterImg,
     is_selected: false,
@@ -65,7 +65,7 @@ const cards = [
   },
   {
     name: "Blogs",
-    status: "loading",
+    status: "",
     subtitle: "Blog articles",
     logo: null,
     is_selected: false,
@@ -73,7 +73,7 @@ const cards = [
   },
   {
     name: "Cold Emails",
-    status: "loading",
+    status: "",
     subtitle: "Templates for cold emails",
     logo: mailImg,
     is_selected: false,
@@ -81,7 +81,7 @@ const cards = [
   },
   {
     name: "Cold Messages",
-    status: "loading",
+    status: "",
     subtitle: "Templates for cold messages",
     logo: null,
     is_selected: false,
@@ -89,7 +89,7 @@ const cards = [
   },
   {
     name: "Free-Tool Ideas",
-    status: "loading",
+    status: "",
     subtitle: "Ideas for free tools",
     logo: null,
     is_selected: false,
@@ -208,45 +208,51 @@ export default function Result() {
   const generatePdf = () => {
     const doc = new jsPDF();
     let yOffset = 10;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    const maxLineWidth = pageWidth - 2 * margin;
+    const lineHeight = 10; // Adjust based on your font size
 
     cardDetail.forEach((card: any) => {
       if (card.response.length > 0) {
         doc.setFontSize(16);
-        doc.text(card.name, 10, yOffset);
-        yOffset += 10;
+        doc.text(card.name, margin, yOffset);
+        yOffset += lineHeight;
 
         card.response.forEach((item: any, index: number) => {
-          const newArray = item.split("\n");
-          newArray.forEach((text: any) => {
-            if (text.trim() !== "") {
-              doc.setFontSize(12);
-              doc.text(text, 10, yOffset);
-              yOffset += 10;
-              if (yOffset > 280) {
-                doc.addPage();
-                yOffset = 10;
-              }
+          doc.setFontSize(16);
+          doc.text(`${index + 1})`, margin, yOffset);
+          yOffset += lineHeight;
+          const lines = doc.splitTextToSize(item, maxLineWidth);
+          lines.forEach((line: any) => {
+            if (yOffset + lineHeight > pageHeight - margin) {
+              doc.addPage();
+              yOffset = margin; // Reset yOffset to top margin
             }
+            doc.setFontSize(12);
+            doc.text(line, margin, yOffset);
+            yOffset += lineHeight;
           });
+          yOffset += lineHeight; // Add extra space after each item
         });
-        yOffset += 10;
       }
     });
 
-    doc.save("responses.pdf");
+    doc.save("StartupGrow-Response.pdf");
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="md:flex flex-1 overflow-hidden">
-        <div className="flex flex-row mx-4 my-4 justify-end md:hidden">
-          {/* <button
+        <div className="flex flex-row mx-4 mt-4 justify-end md:hidden">
+          <button
             onClick={generatePdf}
             className="h-8 w-28 bg-[#FF033E] rounded-md"
           >
             <span className="text-white font-medium text-sm">Download Pdf</span>
-          </button> */}
+          </button>
         </div>
         <div className="w-full md:w-1/2 p-4 overflow-y-auto flex flex-col gap-2">
           {cardDetail.map((card: any, index: number) => (
@@ -288,9 +294,10 @@ export default function Result() {
                 return (
                   <div
                     key={index}
-                    className="px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center cursor-pointer bg-[#F4F4F5] rounded-md"
+                    className="px-3 sm:px-4 py-2 sm:py-3 flex flex-row justify-between cursor-pointer bg-[#F4F4F5] rounded-md"
                   >
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 items-center">
+                      {/* <p className="text-md font-normal">{index + 1}.</p> */}
                       {newArray.map(
                         (text: any, textIndex: number) =>
                           text.trim() !== "" && (
@@ -302,7 +309,7 @@ export default function Result() {
                     </div>
                     <button
                       onClick={() => handleCopy(item, index)}
-                      className="ml-2"
+                      className="ml-2 h-fit"
                     >
                       {copyStatus[index] ? (
                         <FaCheck className="text-red-500" />

@@ -200,7 +200,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const sessionId = productSelected.productId;
 
         // Call handleUserInteraction with fetched initialContent
-        const response = await handleUserInteraction(sessionId, productSelected.initialContent, promptSelected);
+        const response = await handleUserInteraction(sessionId, productSelected.initalContnet, promptSelected);
         // const response: any = ["h", "e", "l"]
 
         // Update responseContent and cycleCompleted based on productType
