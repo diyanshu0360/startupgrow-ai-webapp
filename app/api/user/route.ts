@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const { userEmail } = await req.json();
 
         let existingUser = await User.findOne({ email: userEmail });
-
+// 
         return NextResponse.json({
             message: "UserData Get Success", userData: { email: existingUser.email, userName: existingUser.userName, isLifeTime: existingUser.isLifeTime, productCredits: existingUser.productCredits }
         }, { status: 200 })
