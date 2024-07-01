@@ -70,9 +70,6 @@ export const handleUserInteraction = async (
 
   // Initialize session with initial content if not present
 
-  console.log(
-    `Given is the product's landing page website content: ${initialContent}`
-  );
   const initializeSession = async (sessionId, initialContent) => {
     const messageHistory = await withMessageHistory.getMessageHistory(
       sessionId

@@ -22,8 +22,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
             });
         }
 
-        console.log(typeof String(userDetail), '.....')
-
         if (userDetail.productCredits <= 0) {
             userDetail.productCredits = 0
             return NextResponse.json({

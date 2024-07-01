@@ -177,17 +177,36 @@ export default function Result() {
     }
   };
 
+  const fetchBatch = async (startIndex: any, tryAgain = 0) => {
+    if (tryAgain >= 2) {
+      return;
+    }
+    const batchCalls = [
+      fetchProductData(cardDetail[startIndex].name),
+      fetchProductData(cardDetail[startIndex + 1].name),
+    ];
+    try {
+      const [result1, result2]: any = await Promise.all(batchCalls);
+      if (result1.status === "success" && result2.status === "success") {
+        console.log(`Batch ${startIndex + 1}-${startIndex + 2} successful`);
+      } else {
+        console.error(`Batch ${startIndex + 1}-${startIndex + 2} failed`);
+        fetchBatch(startIndex, tryAgain + 1);
+      }
+    } catch (error) {
+      console.error(
+        `Error in batch ${startIndex + 1}-${startIndex + 2}:`,
+        error
+      );
+    }
+  };
+
   const callMultipleApis = async () => {
-    fetchProductData(cardDetail[0].name);
-    fetchProductData(cardDetail[1].name);
-    fetchProductData(cardDetail[2].name);
-    fetchProductData(cardDetail[3].name);
-    fetchProductData(cardDetail[4].name);
-    fetchProductData(cardDetail[5].name);
-    fetchProductData(cardDetail[6].name);
-    fetchProductData(cardDetail[7].name);
-    fetchProductData(cardDetail[8].name);
-    fetchProductData(cardDetail[9].name);
+    await fetchBatch(0);
+    await fetchBatch(2);
+    await fetchBatch(4);
+    await fetchBatch(6);
+    await fetchBatch(8);
   };
 
   useEffect(() => {

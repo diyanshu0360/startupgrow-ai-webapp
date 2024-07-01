@@ -9,7 +9,6 @@ export default function Pricing() {
   const [isProSelected, setIsProSelected] = useState(false);
   const { data: session }: any = useSession();
 
-  console.log(session?.user);
   const userEmail = session?.user?.email;
   const userName = session?.user?.name;
 

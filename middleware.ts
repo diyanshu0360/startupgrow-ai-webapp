@@ -11,7 +11,6 @@ export async function middleware(request: NextRequest) {
                 secret: process.env.NEXTAUTH_SECRET as string,
             });
 
-            console.log(email)
         }
     }
 }

@@ -10,7 +10,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         const response = await req.json();
         const newResponse = response.data.attributes
-        // console.log(response)
 
         const userEmail = newResponse.user_email;
 
@@ -39,7 +38,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         await userSubscription.save();
 
-        console.log("---------------------------")
         if (newResponse.subtotal == 699) {
             userData.productCredits = 3;
         } else if (newResponse.subtotal == 1699) {
