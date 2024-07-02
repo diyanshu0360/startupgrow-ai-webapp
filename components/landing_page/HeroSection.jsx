@@ -2,8 +2,9 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import dashboardImg from "@/public/dashboard-img.png";
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
   const ctaText = "Get Started";
   const demoVideoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -52,13 +53,17 @@ const HeroSection: React.FC = () => {
         >
           {ctaText}
         </Link>
-        <video
+        {/* <video
           className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12"
           controls
         >
           <source src={demoVideoUrl} type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
+        <img
+          className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12"
+          src={dashboardImg}
+        />
       </div>
     </section>
   );
