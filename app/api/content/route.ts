@@ -93,179 +93,169 @@ export async function POST(req: NextRequest, res: NextResponse) {
             "Consider yourself as experienced Reddit content writer. I want you to write me Reddit Post for a product. I'll give you landing page content, you need to write Reddit Post. The Redit Post topic should be relevant to Product. Blog Post should experiment with new techniques and formats. All Reddit Post should end with a CTA. Refer this for Title “I made a site to [benefit for user]”. Write about getting valuable feedback. Strictly no use of emoji."
         ]
 
+        let flagAPICall = true;
+        let textResponse: any;
         switch (productType) {
             case "Product Descriptions":
                 if (productSelected.productDescriptionContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.productDescriptionContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.productDescriptionContent.responseContent]
                 } else {
                     promptSelected = [...productDescriptionPrompt];
                 }
                 break;
             case "Reddit Posts":
                 if (productSelected.redditContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.redditContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.redditContent.responseContent]
                 } else {
                     promptSelected = [...redditPrompt];
                 }
                 break;
             case "Hacker-News Posts":
                 if (productSelected.hackerNewsContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.hackerNewsContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.hackerNewsContent.responseContent]
                 } else {
                     promptSelected = [...hackerNewPrompt];
                 }
                 break;
             case "Product-Hunt":
                 if (productSelected.productHuntContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.productHuntContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.productHuntContent.responseContent]
                 } else {
                     promptSelected = [...productHuntPrompt];
                 }
                 break;
             case "LinkedIn Posts":
                 if (productSelected.linkedInContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.linkedInContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.linkedInContent.responseContent]
                 } else {
                     promptSelected = [...linkedInPrompt];
                 }
                 break;
             case "Twitter Posts":
                 if (productSelected.twitterContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.twitterContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.twitterContent.responseContent]
                 } else {
                     promptSelected = [...twitterPrompt];
                 }
                 break;
             case "Blogs":
                 if (productSelected.blogContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.blogContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.blogContent.responseContent]
                 } else {
                     promptSelected = [...blogPrompt];
                 }
                 break;
             case "Cold Emails":
                 if (productSelected.coldEmailContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.coldEmailContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.coldEmailContent.responseContent]
                 } else {
                     promptSelected = [...coldEmailPrompt];
                 }
                 break;
             case "Cold Messages":
                 if (productSelected.coldMessageContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.coldMessageContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.coldMessageContent.responseContent]
                 } else {
                     promptSelected = [...coldMessagePrompt];
                 }
                 break;
             case "Free-Tool Ideas":
                 if (productSelected.freeToolIdeaContent.cycleCompleted) {
-                    return NextResponse.json({
-                        message: "Product saved successfully",
-                        textResponse: [...productSelected.freeToolIdeaContent.responseContent]
-                    }, { status: 200 });
+                    flagAPICall = false
+                    textResponse = [...productSelected.freeToolIdeaContent.responseContent]
                 } else {
                     promptSelected = [...freeToolIdeaPrompt];
                 }
                 break;
         }
 
-        console.log("API Call Started ////")
-        // Fetch content from external scraper API
-        const sessionId = productSelected.productId;
-        const response = await handleUserInteraction(sessionId, productSelected.initalContnet, promptSelected);
+        if (flagAPICall) {
+            console.log("//////////// API Call Started /////////////", flagAPICall)
+            // // Fetch content from external scraper API
+            const sessionId = productSelected.productId;
+            let response = await handleUserInteraction(sessionId, productSelected.initalContnet, promptSelected);
 
-        // Update responseContent and cycleCompleted based on productType
-        let responseArray: any = [];
-        switch (productType) {
-            case "Product Descriptions":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.productDescriptionContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.productDescriptionContent.cycleCompleted = true;
-                break;
-            case "Reddit Posts":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.redditContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.redditContent.cycleCompleted = true;
-                break;
-            case "Hacker-News Posts":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.hackerNewsContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.hackerNewsContent.cycleCompleted = true;
-                break;
-            case "Product-Hunt":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.productHuntContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.productHuntContent.cycleCompleted = true;
-                break;
-            case "LinkedIn Posts":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.linkedInContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.linkedInContent.cycleCompleted = true;
-                break;
-            case "Twitter Posts":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.twitterContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.twitterContent.cycleCompleted = true;
-                break;
-            case "Blogs":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.blogContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.blogContent.cycleCompleted = true;
-                break;
-            case "Cold Emails":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.coldEmailContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.coldEmailContent.cycleCompleted = true;
-                break;
-            case "Cold Messages":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.coldMessageContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.coldMessageContent.cycleCompleted = true;
-                break;
-            case "Free-Tool Ideas":
-                responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
-                productSelected.freeToolIdeaContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
-                productSelected.freeToolIdeaContent.cycleCompleted = true;
-                break;
+            // Update responseContent and cycleCompleted based on productType
+            let responseArray: any = [];
+            switch (productType) {
+                case "Product Descriptions":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.productDescriptionContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.productDescriptionContent.cycleCompleted = true;
+                    break;
+                case "Reddit Posts":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.redditContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.redditContent.cycleCompleted = true;
+                    break;
+                case "Hacker-News Posts":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.hackerNewsContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.hackerNewsContent.cycleCompleted = true;
+                    break;
+                case "Product-Hunt":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.productHuntContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.productHuntContent.cycleCompleted = true;
+                    break;
+                case "LinkedIn Posts":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.linkedInContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.linkedInContent.cycleCompleted = true;
+                    break;
+                case "Twitter Posts":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.twitterContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.twitterContent.cycleCompleted = true;
+                    break;
+                case "Blogs":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.blogContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.blogContent.cycleCompleted = true;
+                    break;
+                case "Cold Emails":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.coldEmailContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.coldEmailContent.cycleCompleted = true;
+                    break;
+                case "Cold Messages":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.coldMessageContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.coldMessageContent.cycleCompleted = true;
+                    break;
+                case "Free-Tool Ideas":
+                    responseArray = [...response.map((item: any) => item.lc_kwargs.content)]
+                    productSelected.freeToolIdeaContent.responseContent = response.map((item: any) => item.lc_kwargs.content);
+                    productSelected.freeToolIdeaContent.cycleCompleted = true;
+                    break;
+            }
+
+            // Save the updated document back to MongoDB
+            await SavedHistory.findOneAndUpdate(
+                { email: userEmail, "allProductHistory.productId": productId },
+                { $set: { "allProductHistory.$": productSelected } }
+            );
+
+            return NextResponse.json({
+                message: "Product saved successfully",
+                textResponse: [...responseArray]
+            }, { status: 200 });
+        } else {
+            return NextResponse.json({
+                message: "Product saved successfully",
+                textResponse: [...textResponse]
+            }, { status: 200 });
         }
 
-        // Save the updated document back to MongoDB
-        await SavedHistory.findOneAndUpdate(
-            { email: userEmail, "allProductHistory.productId": productId },
-            { $set: { "allProductHistory.$": productSelected } }
-        );
-
-        return NextResponse.json({
-            message: "Product saved successfully",
-            textResponse: [...responseArray]
-        }, { status: 200 });
 
     } catch (err) {
         console.error('Error in POST:', err);

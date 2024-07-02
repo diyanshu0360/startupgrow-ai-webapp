@@ -33,10 +33,13 @@ const HeroSection: React.FC = () => {
         </svg>
       </div>
       <div className="container mx-auto flex flex-col items-center text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold md:w-2/3 mb-3 md:mb-5 text-black">
+        <h1
+          style={{ lineHeight: "66px" }}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold md:w-2/3 mb-3 md:mb-5 text-black"
+        >
           <span className="bg-[#FF033E] text-white px-3 text-center items-center justify-center">
             30 Days
-          </span>{" "}
+          </span>
           of Marketing Content Instantly
         </h1>
         <p className="text-md md:text-xl text-[#71717A] text-center md:w-3/6 mb-3 md:mb-5">

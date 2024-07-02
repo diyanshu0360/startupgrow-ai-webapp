@@ -98,6 +98,7 @@ const cards = [
 ];
 
 export default function Result() {
+  const [calledAPI, setCalledAPI] = useState(true);
   const [cardDetail, setCardDetail] = useState<any>(cards);
   const [selectedCard, setSelectedCard] = useState(0);
   const [copyStatus, setCopyStatus] = useState<any>({});
@@ -185,19 +186,17 @@ export default function Result() {
       fetchProductData(cardDetail[startIndex].name),
       fetchProductData(cardDetail[startIndex + 1].name),
     ];
+
     try {
       const [result1, result2]: any = await Promise.all(batchCalls);
       if (result1.status === "success" && result2.status === "success") {
         console.log(`Batch ${startIndex + 1}-${startIndex + 2} successful`);
       } else {
-        console.error(`Batch ${startIndex + 1}-${startIndex + 2} failed`);
+        console.log(`Batch ${startIndex + 1}-${startIndex + 2} failed`);
         fetchBatch(startIndex, tryAgain + 1);
       }
     } catch (error) {
-      console.error(
-        `Error in batch ${startIndex + 1}-${startIndex + 2}:`,
-        error
-      );
+      console.log(`Error in batch ${startIndex + 1}-${startIndex + 2}:`, error);
     }
   };
 
@@ -207,10 +206,12 @@ export default function Result() {
     await fetchBatch(4);
     await fetchBatch(6);
     await fetchBatch(8);
+    setCalledAPI(false);
   };
 
   useEffect(() => {
-    if (session?.user?.email) {
+    if (session?.user?.email && calledAPI) {
+      setCardDetail(cards);
       callMultipleApis();
     }
   }, [session]);
@@ -315,7 +316,7 @@ export default function Result() {
                     key={index}
                     className="px-3 sm:px-4 py-2 sm:py-3 flex flex-row justify-between cursor-pointer bg-[#F4F4F5] rounded-md"
                   >
-                    <div className="flex flex-col gap-2 items-center">
+                    <div className="flex flex-col gap-2">
                       {/* <p className="text-md font-normal">{index + 1}.</p> */}
                       {newArray.map(
                         (text: any, textIndex: number) =>
