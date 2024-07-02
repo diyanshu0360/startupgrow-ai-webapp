@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import dashboardImg from "@/public/dashboard-img.png";
+import Image from "next/image";
 
 const HeroSection = () => {
   const ctaText = "Get Started";
@@ -60,8 +61,9 @@ const HeroSection = () => {
           <source src={demoVideoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
-        <img
-          className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12"
+        <Image
+          alt="No img"
+          className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12 border border-gray-300"
           src={dashboardImg}
         />
       </div>
