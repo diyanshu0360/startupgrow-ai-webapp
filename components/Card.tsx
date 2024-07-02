@@ -42,12 +42,9 @@ const Card: React.FC<CardProps> = ({
       {isAddCard ? (
         <p className="text-md font-medium ">+ New Product</p>
       ) : (
-        <div>
+        <div className="flex flex-col justify-between">
           <p className="text-md font-medium mb-1">{productName}</p>
-          {/* <p className="text-sm font-normal mb-3"> 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-            dolor sit.
-          </p>*/}
+          <p className="text-sm font-normal mb-3">{productUrl}</p>
           <Link href={`${productUrl}`} target={"_blank"}>
             <span className="font-medium flex flex-col justify-center items-center z-10 text-sm text-white h-6 w-16 bg-[#FF033E] rounded-md">
               Visit
