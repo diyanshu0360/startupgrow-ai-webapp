@@ -44,10 +44,10 @@ const Card: React.FC<CardProps> = ({
       ) : (
         <div>
           <p className="text-md font-medium mb-1">{productName}</p>
-          <p className="text-sm font-normal mb-3">
+          {/* <p className="text-sm font-normal mb-3"> 
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
             dolor sit.
-          </p>
+          </p>*/}
           <Link href={`${productUrl}`} target={"_blank"}>
             <span className="font-medium flex flex-col justify-center items-center z-10 text-sm text-white h-6 w-16 bg-[#FF033E] rounded-md">
               Visit
