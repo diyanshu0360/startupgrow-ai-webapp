@@ -2,13 +2,9 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
-import dashboardImg from "@/public/dashboard-img.png";
-import Image from "next/image";
 
 const HeroSection = () => {
   const ctaText = "Get Started";
-  const demoVideoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
-
   const { data: session } = useSession();
 
   return (
@@ -54,18 +50,16 @@ const HeroSection = () => {
         >
           {ctaText}
         </Link>
-        {/* <video
-          className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12"
-          controls
-        >
-          <source src={demoVideoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */}
-        <Image
-          alt="No img"
-          className="w-full md:w-3/4 rounded-lg shadow-lg mt-8 md:mt-12 border border-gray-300"
-          src={dashboardImg}
-        />
+        <div class="relative pb-[62.5%] md:pb-[50%] h-0 w-full md:w-4/5 flex flex-col items-center mt-8 md:mt-12">
+          <iframe
+            src="https://www.loom.com/embed/a237da194de345e7ae3cae313088bb7c?sid=13bfcb52-24a0-4a92-8090-38a1874edff2&hideControls=true&autoplay=true"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+            class="absolute top-0 left-0 w-full h-full"
+          ></iframe>
+        </div>
       </div>
     </section>
   );
