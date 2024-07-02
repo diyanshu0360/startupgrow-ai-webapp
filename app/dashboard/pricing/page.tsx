@@ -12,8 +12,8 @@ export default function Pricing() {
   const userEmail = session?.user?.email;
   const userName = session?.user?.name;
 
-  let paymentUrlStarter = `${process.env.LEMON_BASEURL}/${process.env.STARTER_PLAN}?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=${process.env.DISCOUNT_CODE}`;
-  let paymentUrlPro = `${process.env.LEMON_BASEURL}/${process.env.PRO_PLAN}?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=${process.env.DISCOUNT_CODE}`;
+  let paymentUrlStarter = `https://billing-startupgrowai.lemonsqueezy.com/checkout/buy/72ffdb9c-4dc3-475a-bd8e-35a40cf7bfeb?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=FIRST100`;
+  let paymentUrlPro = `https://billing-startupgrowai.lemonsqueezy.com/checkout/buy/b1712dd0-05d3-4185-9339-e8f5c23beabc?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=FIRST100`;
 
   const cards = [
     {
@@ -80,11 +80,11 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-        <Link href={`${card.onPressLink}`} target={"_blank"}>
+        <a href={card.onPressLink} target={"_blank"}>
           <div className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full flex flex-col justify-center items-center">
             {card.button}
           </div>
-        </Link>
+        </a>
       </div>
     </div>
   );
