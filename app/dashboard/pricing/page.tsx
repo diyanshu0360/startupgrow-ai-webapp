@@ -12,8 +12,8 @@ export default function Pricing() {
   const userEmail = session?.user?.email;
   const userName = session?.user?.name;
 
-  const baseUrl = "https://elevenpages.lemonsqueezy.com/checkout/buy";
-  let paymentUrl = `${baseUrl}/${"bac2f57b-a379-4d69-b604-8dbbe8439be4"}?checkout[email]=${userEmail}&checkout[name]=${userName}`;
+  let paymentUrlStarter = `${process.env.LEMON_BASEURL}/${process.env.STARTER_PLAN}?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=${process.env.DISCOUNT_CODE}`;
+  let paymentUrlPro = `${process.env.LEMON_BASEURL}/${process.env.PRO_PLAN}?checkout[email]=${userEmail}&checkout[name]=${userName}&checkout[discount_code]=${process.env.DISCOUNT_CODE}`;
 
   const cards = [
     {
@@ -28,7 +28,7 @@ export default function Pricing() {
         "Upcoming Features",
       ],
       button: "Buy Now",
-      onPressLink: paymentUrl,
+      onPressLink: paymentUrlStarter,
     },
     {
       title: "Pro Plan",
@@ -43,7 +43,7 @@ export default function Pricing() {
       ],
       button: "Buy Now",
       popular: true,
-      onPressLink: paymentUrl,
+      onPressLink: paymentUrlPro,
     },
   ];
 
