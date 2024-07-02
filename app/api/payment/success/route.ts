@@ -41,7 +41,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         if (newResponse.subtotal == 1999) {
             userData.productCredits = 3;
         } else if (newResponse.subtotal == 2999) {
-            userData.productCredits = 5;
+            userData.productCredits = 6;
         }
 
         await userData.save()
