@@ -38,10 +38,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         await userSubscription.save();
 
-        if (newResponse.subtotal == 1999) {
+        if (newResponse.subtotal == 1599) {
+            userData.productCredits = 1;
+        } else if (newResponse.subtotal == 3999) {
             userData.productCredits = 3;
-        } else if (newResponse.subtotal == 2999) {
-            userData.productCredits = 6;
         }
 
         await userData.save()

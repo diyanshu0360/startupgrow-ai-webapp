@@ -6,10 +6,10 @@ export default function Pricing() {
     {
       title: "Starter Plan",
       subtitle: "Great for Launch",
-      price: "$39",
-      discounted: "$19",
+      price: "$15.99",
+      discounted: "$7.99",
       features: [
-        "3 Credits (1 credit = 30 days of content)",
+        "1 Credit (1 credit = 30 days of content)",
         "30 days Marketing Content",
         "24/7 Support",
         "Upcoming Features",
@@ -20,10 +20,10 @@ export default function Pricing() {
     {
       title: "Pro Plan",
       subtitle: "Perfect for Growth",
-      price: "$59",
-      discounted: "$29",
+      price: "$39.99",
+      discounted: "$19.99",
       features: [
-        "6 Credits (1 credit = 30 days of content)",
+        "3 Credits (1 credit = 30 days of content)",
         "30 days Marketing Content",
         "24/7 Support",
         "Upcoming Features",
