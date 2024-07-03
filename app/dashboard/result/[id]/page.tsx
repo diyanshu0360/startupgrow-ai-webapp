@@ -182,30 +182,32 @@ export default function Result() {
     if (tryAgain >= 2) {
       return;
     }
-    const batchCalls = [
-      fetchProductData(cardDetail[startIndex].name),
-      fetchProductData(cardDetail[startIndex + 1].name),
-    ];
+    const batchCalls = [fetchProductData(cardDetail[startIndex].name)];
 
     try {
-      const [result1, result2]: any = await Promise.all(batchCalls);
-      if (result1.status === "success" && result2.status === "success") {
-        console.log(`Batch ${startIndex + 1}-${startIndex + 2} successful`);
+      const [result]: any = await Promise.all(batchCalls);
+      if (result.status === "success") {
+        console.log(`Batch ${startIndex} successful`);
       } else {
-        console.log(`Batch ${startIndex + 1}-${startIndex + 2} failed`);
+        console.log(`Batch ${startIndex} failed`);
         fetchBatch(startIndex, tryAgain + 1);
       }
     } catch (error) {
-      console.log(`Error in batch ${startIndex + 1}-${startIndex + 2}:`, error);
+      console.log(`Error in batch ${startIndex}:`, error);
     }
   };
 
   const callMultipleApis = async () => {
     await fetchBatch(0);
+    await fetchBatch(1);
     await fetchBatch(2);
+    await fetchBatch(3);
     await fetchBatch(4);
+    await fetchBatch(5);
     await fetchBatch(6);
+    await fetchBatch(7);
     await fetchBatch(8);
+    await fetchBatch(9);
     setCalledAPI(false);
   };
 
