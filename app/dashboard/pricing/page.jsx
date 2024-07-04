@@ -1,13 +1,13 @@
 "use client";
 import Header from "@/components/Header";
+import { trackBtnEvent } from "@/lib/mixpanel";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
 
 export default function Pricing() {
   const [isProSelected, setIsProSelected] = useState(false);
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
 
   const userEmail = session?.user?.email;
   const userName = session?.user?.name;
@@ -47,7 +47,7 @@ export default function Pricing() {
     },
   ];
 
-  const renderCard = (card: any, index: number) => (
+  const renderCard = (card, index) => (
     <div className="relative py-2 bg-white" key={index}>
       <div className="overflow-hidden shadow-lg p-4 border rounded-md w-64 sm:w-72">
         {card.popular && (
@@ -72,7 +72,7 @@ export default function Pricing() {
             {card.subtitle}
           </div>
           <div className="flex flex-col gap-1 mb-5">
-            {card.features.map((feature: any, i: number) => (
+            {card.features.map((feature, i) => (
               <div className="flex flex-row gap-1 items-center" key={i}>
                 <IoMdCheckmark size={16} />
                 <p className="font-medium text-sm text-black">{feature}</p>
@@ -80,7 +80,14 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-        <a href={card.onPressLink} target={"_blank"}>
+        <a
+          onclick={() => {
+            trackBtnEvent("Pricing");
+            return true;
+          }}
+          href={card.onPressLink}
+          target={"_blank"}
+        >
           <div className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full flex flex-col justify-center items-center">
             {card.button}
           </div>

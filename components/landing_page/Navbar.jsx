@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import logoImg from "@/public/logo.png";
+import { trackBtnEvent } from "@/lib/mixpanel";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,6 +49,10 @@ const Navbar = () => {
             {session ? (
               <Link
                 href="/dashboard"
+                onClick={() => {
+                  trackBtnEvent("Dashboard");
+                  return true;
+                }}
                 className="bg-[#FF033E] text-white rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
               >
                 Dashboard
@@ -128,6 +133,10 @@ const Navbar = () => {
             {session ? (
               <Link
                 href="/dashboard"
+                onClick={() => {
+                  trackBtnEvent("Dashboard");
+                  return true;
+                }}
                 className="bg-[#FF033E] text-white flex-grow rounded-md text-md font-medium flex items-center justify-center h-9 px-4"
               >
                 Dashboard

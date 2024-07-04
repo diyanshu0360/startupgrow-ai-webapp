@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { ImSpinner8 } from "react-icons/im";
 import Image from "next/image";
 import logoImg from "@/public/logo.png";
+import { trackBtnEvent } from "@/lib/mixpanel";
 
 const NextLoginPage = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const NextLoginPage = () => {
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
+      trackBtnEvent("Dashboard");
       router.replace("/dashboard");
     }
   }, [sessionStatus, router]);

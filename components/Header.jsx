@@ -7,12 +7,11 @@ import { FaSignOutAlt, FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { ImSpinner8 } from "react-icons/im";
 import userIcon from "@/public/user-icon.png";
+import { trackBtnEvent } from "@/lib/mixpanel";
 
 export default function Header() {
   const { data: session } = useSession();
-  const avtarImg: any | undefined = session?.user?.image
-    ? session.user.image
-    : userIcon;
+  const avtarImg = session?.user?.image ? session.user.image : userIcon;
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -32,7 +31,10 @@ export default function Header() {
   return (
     <header className="flex h-16 items-center justify-between px-4 md:px-6 py-3 bg-white text-black border-b-[1px] border-gray-300 sticky top-0 z-10">
       <div
-        onClick={() => router.replace("/dashboard")}
+        onClick={() => {
+          trackBtnEvent("Dashboard")
+          router.replace("/dashboard");
+        }}
         className="flex flex-row items-center gap-1 cursor-pointer"
       >
         <Image className="object-contain w-8 md:w-9" src={logoImg} alt="Logo" />

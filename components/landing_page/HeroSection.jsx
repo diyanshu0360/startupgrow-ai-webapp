@@ -1,10 +1,13 @@
 "use client";
+import { trackBtnEvent } from "@/lib/mixpanel";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const HeroSection = () => {
   const ctaText = "Get Started";
+  const router = useRouter();
   const { data: session } = useSession();
 
   return (
@@ -44,20 +47,23 @@ const HeroSection = () => {
           Input website URL, our AI will create marketing content for multiple
           socials and platforms instantly.
         </p>
-        <Link
-          href={session ? "/dashboard" : "/login"}
+        <button
+          onClick={() => {
+            if (session) {
+              trackBtnEvent("Dashboard");
+              router.replace("/dashboard");
+            } else {
+              router.replace("/login");
+            }
+          }}
           className="bg-[#FF033E] text-white rounded-md text-lg font-medium flex items-center justify-center h-10 px-16"
         >
           {ctaText}
-        </Link>
-        <div class="relative pb-[62.5%] md:pb-[50%] h-0 w-full md:w-4/5 flex flex-col items-center mt-8 md:mt-12">
+        </button>
+        <div className="relative pb-[62.5%] md:pb-[50%] h-0 w-full md:w-4/5 flex flex-col items-center mt-8 md:mt-12">
           <iframe
             src="https://www.loom.com/embed/a237da194de345e7ae3cae313088bb7c?sid=13bfcb52-24a0-4a92-8090-38a1874edff2&hideControls=true&autoplay=true"
-            frameborder="0"
-            webkitallowfullscreen
-            mozallowfullscreen
-            allowfullscreen
-            class="absolute top-0 left-0 w-full h-full"
+            className="absolute top-0 left-0 h-full w-full"
           ></iframe>
         </div>
       </div>

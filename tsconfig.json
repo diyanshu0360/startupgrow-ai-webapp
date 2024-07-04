@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/payment/starter-plan/route.js", "app/api/payment/pro-plan/route.js", "components/landing_page/HeroSection.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/payment/starter-plan/route.js", "app/api/payment/pro-plan/route.js", "components/landing_page/HeroSection.jsx", "app/page.jsx", "app/dashboard/page.tsx", "components/landing_page/PricingSection.jsx", "app/dashboard/pricing/page.jsx", "app/login/layout.jsx", "app/login/page.jsx", "components/Header.jsx", "components/landing_page/Navbar.jsx"],
   "exclude": ["node_modules"]
 }

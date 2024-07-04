@@ -1,7 +1,10 @@
-import Link from "next/link";
 import { IoMdCheckmark } from "react-icons/io";
+import { useRouter } from "next/navigation";
+import { trackBtnEvent } from "@/lib/mixpanel";
 
 export default function Pricing() {
+  const router = useRouter();
+
   const cards = [
     {
       title: "Starter Plan",
@@ -34,7 +37,7 @@ export default function Pricing() {
     },
   ];
 
-  const renderCard = (card: any, index: any) => (
+  const renderCard = (card, index) => (
     <div
       className={`relative py-8 px-4 flex flex-row justify-center items-center ${
         index == 0 ? "md:justify-end" : "md:justify-start"
@@ -64,7 +67,7 @@ export default function Pricing() {
             {card.subtitle}
           </div>
           <div className="flex flex-col gap-1 md:gap-2 md:mb-5">
-            {card.features.map((feature: any, i: any) => (
+            {card.features.map((feature, i) => (
               <div className="flex flex-row gap-1 items-center" key={i}>
                 <IoMdCheckmark size={16} />
                 <p className="font-medium text-sm text-black">{feature}</p>
@@ -72,11 +75,15 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-        <Link href={card.onPressLink}>
-          <span className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full flex justify-center items-center mt-2 md:mt-4 cursor-pointer">
-            {card.button}
-          </span>
-        </Link>
+        <button
+          className="bg-[#FF033E] h-10 text-white rounded-md font-medium text-md w-full flex justify-center items-center mt-2 md:mt-4 cursor-pointer"
+          onClick={() => {
+            trackBtnEvent("Pricing");
+            router.replace(card.onPressLink);
+          }}
+        >
+          {card.button}
+        </button>
       </div>
     </div>
   );
