@@ -37,6 +37,7 @@ export default function Pricing() {
     },
   ];
 
+  
   const renderCard = (card, index) => (
     <div
       className={`relative py-8 px-4 flex flex-row justify-center items-center ${
