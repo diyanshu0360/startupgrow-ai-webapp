@@ -18,7 +18,7 @@ export default function Pricing() {
         "Upcoming Features",
       ],
       button: "Buy Now",
-      onPressLink: "/dashboard",
+      onPressLink: "/dashboard/pricing",
     },
     {
       title: "Pro Plan",
@@ -33,7 +33,7 @@ export default function Pricing() {
       ],
       button: "Buy Now",
       popular: true,
-      onPressLink: "/dashboard",
+      onPressLink: "/dashboard/pricing",
     },
   ];
 
