@@ -265,18 +265,25 @@ export default function Result() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col">
       <Header />
-      <div className="md:flex flex-1 overflow-hidden">
-        <div className="flex flex-row mx-4 mt-4 justify-end md:hidden">
+      <div className="flex flex-row justify-between gap-3 items-center mt-4 mb-2 mx-4">
+        <div className="items-center">
+          <p className="text-md font-medium underline text-black">
+            30 Days Product Launch
+          </p>
+        </div>
+        <div className="flex flex-row items-center">
           <button
             onClick={generatePdf}
-            className="h-8 w-28 bg-[#FF033E] rounded-md"
+            className="h-9 w-32 bg-[#FF033E] rounded-md"
           >
             <span className="text-white font-medium text-sm">Download Pdf</span>
           </button>
         </div>
-        <div className="w-full md:w-1/2 p-4 overflow-y-auto flex flex-col gap-2">
+      </div>
+      <div className="md:flex flex-1 overflow-hidden mb-2">
+        <div className="w-full md:w-1/2 py-2 px-4 no-scrollbar overflow-y-auto flex flex-col gap-2 h-[calc(100vh-125px)]">
           {cardDetail.map((card: any, index: number) => (
             <List
               key={index}
@@ -292,18 +299,8 @@ export default function Result() {
             />
           ))}
         </div>
-        <div className="hidden md:block w-full md:w-1/2 p-4 overflow-y-auto">
-          <div className="flex flex-row justify-end">
-            <button
-              onClick={generatePdf}
-              className="h-9 w-32 bg-[#FF033E] rounded-md"
-            >
-              <span className="text-white font-medium text-sm">
-                Download Pdf
-              </span>
-            </button>
-          </div>
-          <div className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md mt-4">
+        <div className="hidden py-2 px-4 md:block w-full md:w-1/2 p-4 no-scrollbar overflow-y-auto h-[calc(100vh-125px)]">
+          <div className="px-3 sm:px-4 py-2 sm:py-3 flex flex-col cursor-pointer bg-[#F4F4F5] rounded-md">
             <h2 className="text-xl font-bold">
               {cardDetail[selectedCard].name}
             </h2>
@@ -319,7 +316,6 @@ export default function Result() {
                     className="px-3 sm:px-4 py-2 sm:py-3 flex flex-row justify-between cursor-pointer bg-[#F4F4F5] rounded-md"
                   >
                     <div className="flex flex-col gap-2">
-                      {/* <p className="text-md font-normal">{index + 1}.</p> */}
                       {newArray.map(
                         (text: any, textIndex: number) =>
                           text.trim() !== "" && (

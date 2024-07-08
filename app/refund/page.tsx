@@ -2,7 +2,6 @@ import Footer from "@/components/landing_page/Footer";
 import Navbar from "@/components/landing_page/Navbar";
 
 const RefundPage = () => {
-  // Example last update date
   const lastUpdateDate = "June 30, 2024";
   return (
     <main className="bg-white">

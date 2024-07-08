@@ -32,8 +32,8 @@ const WaitlistSection: React.FC = () => {
 
           {/* Button Section */}
           <div className="flex flex-row justify-center items-center mt-6 md:mt-8">
-            <button className="bg-[#FF033E] text-white rounded-md text-md font-medium flex items-center justify-center h-9 w-40">
-              Try Now
+            <button className="bg-[#FF033E] text-white rounded-md text-md font-medium flex items-center justify-center h-9 w-48">
+              Get Started
             </button>
           </div>
         </div>

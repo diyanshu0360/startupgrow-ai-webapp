@@ -47,7 +47,6 @@ const NextLoginPage = () => {
             <ImSpinner8 className="animate-spin text-[#FF033E] h-full" />
           </button>
         ) : (
-          // sessionStatus !== "authenticated" && (
           <button
             onClick={() => handleLogin()}
             className="flex sm:min-w-60 h-10 items-center border border-gray-300 justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -57,7 +56,6 @@ const NextLoginPage = () => {
               Login with Google
             </span>
           </button>
-          // )
         )}
       </div>
     </div>

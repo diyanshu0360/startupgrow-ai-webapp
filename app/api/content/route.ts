@@ -180,11 +180,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         if (flagAPICall) {
             console.log("//////////// API Call Started /////////////", flagAPICall)
-            // // Fetch content from external scraper API
             const sessionId = productSelected.productId;
             let response = await handleUserInteraction(sessionId, productSelected.initalContnet, promptSelected);
 
-            // Update responseContent and cycleCompleted based on productType
             let responseArray: any = [];
             switch (productType) {
                 case "Product Descriptions":
@@ -239,7 +237,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
                     break;
             }
 
-            // Save the updated document back to MongoDB
             await SavedHistory.findOneAndUpdate(
                 { email: userEmail, "allProductHistory.productId": productId },
                 { $set: { "allProductHistory.$": productSelected } }

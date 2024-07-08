@@ -10,7 +10,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const { userEmail } = await req.json();
 
-        // Find the existing user or create a new one
         let userHistory = await SavedHistory.findOne({ email: userEmail });
 
         let filteredArray: any = [];

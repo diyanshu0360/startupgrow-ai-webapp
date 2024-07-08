@@ -10,7 +10,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const { userEmail, productName, productUrl, contentOption } = await req.json();
 
-        // Find the existing user or create a new one
         let userDetail = await User.findOne({ email: userEmail });
         let userHistory = await SavedHistory.findOne({ email: userEmail });
 
@@ -32,7 +31,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
             userDetail.productCredits -= 1
         }
 
-        // Generate a new product ID
         const productCount = userHistory.allProductHistory.length + 1;
         const productId = `${String(userDetail._id).slice(6)}${String(productCount).padStart(4, "0")}`;
 
@@ -40,7 +38,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const responseScape = await fetch(`${process.env.SCRAPER_URL}?url=${encodeURIComponent(productUrl)}`);
         const initalContnet = await responseScape.text();
 
-        // Add the new product to the user's history
         userHistory.allProductHistory.push({
             productId,
             productName,
@@ -60,7 +57,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
             createdAt: new Date(),
         });
 
-        // Save the updated user history to the database
         await userHistory.save();
         await userDetail.save();
 
